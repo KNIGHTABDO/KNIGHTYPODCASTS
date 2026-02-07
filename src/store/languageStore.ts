@@ -113,7 +113,12 @@ const englishTranslations: Record<string, string> = {
   'about.contact.email': 'Email',
   'about.contact.subject': 'Subject',
   'about.contact.message': 'Message',
-  'about.contact.send': 'Send Message'
+  'about.contact.send': 'Send Message',
+
+  // Footer
+  'footer.description': 'Video platform for discovering and sharing meaningful content.',
+  'footer.quickLinks': 'Quick Links',
+  'footer.copyright': '© 2026 KnightyTV. All rights reserved.'
 };
 
 const arabicTranslations: Record<string, string> = {
@@ -154,6 +159,60 @@ const arabicTranslations: Record<string, string> = {
   'home.cta.subtitle': 'اكتشف مجموعتنا من الفيديوهات لتعميق فهمك وإثراء معرفتك',
   'home.cta.button': 'تصفح جميع الفيديوهات',
 
-  // ... Continue adding Arabic translations for all other sections ...
-  // (The pattern continues for all other sections matching the English translations above)
+  // Videos Page
+  'podcasts.title': 'فيديوهات',
+  'podcasts.subtitle': 'استكشف مجموعتنا من الفيديوهات',
+  'podcasts.filter.category': 'الفئة',
+  'podcasts.filter.all': 'كل الفئات',
+  'podcasts.notFound': 'لم يتم العثور على فيديوهات',
+  'podcasts.tryAgain': 'حاول تعديل البحث أو معايير التصفية',
+
+  // Auth Page
+  'auth.signIn': 'تسجيل الدخول',
+  'auth.createAccount': 'إنشاء حساب',
+  'auth.email': 'البريد الإلكتروني',
+  'auth.password': 'كلمة المرور',
+  'auth.username': 'اسم المستخدم',
+  'auth.forgotPassword': 'نسيت كلمة المرور؟',
+  'auth.noAccount': 'ليس لديك حساب؟ سجل الآن',
+  'auth.haveAccount': 'لديك حساب بالفعل؟ سجل دخول',
+  'auth.error.required': 'هذا الحقل مطلوب',
+  'auth.error.email': 'يرجى إدخال بريد إلكتروني صحيح',
+  'auth.error.password': 'يجب أن تكون كلمة المرور 6 أحرف على الأقل',
+  'auth.error.username': 'يجب أن يكون اسم المستخدم من 3-20 حرفًا ويمكن أن يحتوي فقط على أحرف وأرقام وشرطات سفلية',
+
+  // Admin Dashboard
+  'admin.dashboard': 'لوحة التحكم',
+  'admin.addNew': 'إضافة فيديو جديد',
+  'admin.totalPodcasts': 'إجمالي الفيديوهات',
+  'admin.managePodcasts': 'إدارة الفيديوهات',
+  'admin.noPodcasts': 'لم يتم العثور على فيديوهات',
+  'admin.startAdding': 'ابدأ بإضافة أول فيديو لك',
+
+  // Profile Page
+  'profile.edit': 'تعديل الملف الشخصي',
+  'profile.podcasts': 'فيديوهات',
+  'profile.noPodcasts': 'لم يتم تحميل أي فيديوهات بعد',
+  'profile.joinedDate': 'انضم في',
+
+  // About Page
+  'about.title': 'حول KnightyTV',
+  'about.mission': 'مهمتنا هي نشر المعرفة الأصيلة من خلال الفيديوهات والمحتوى الجذاب، وجعلها متاحة للجميع في جميع أنحاء العالم.',
+  'about.story.title': 'قصتنا',
+  'about.story.text1': 'تم تأسيس KnightyTV في عام 2025 بهدف بسيط: جعل المعرفة الأصيلة متاحة للجميع.',
+  'about.story.text2': 'ما بدأ كمشروع صغير نما ليصبح منصة تصل إلى آلاف المشاهدين في جميع أنحاء العالم.',
+  'about.values.title': 'قيمنا',
+  'about.team.title': 'فريقنا',
+  'about.contact.title': 'تواصل معنا',
+  'about.contact.subtitle': 'هل لديك أسئلة أو اقتراحات؟ نحن نحب أن نسمع منك!',
+  'about.contact.name': 'الاسم',
+  'about.contact.email': 'البريد الإلكتروني',
+  'about.contact.subject': 'الموضوع',
+  'about.contact.message': 'الرسالة',
+  'about.contact.send': 'إرسال الرسالة',
+
+  // Footer
+  'footer.description': 'منصة فيديو لاكتشاف ومشاركة المحتوى الهادف.',
+  'footer.quickLinks': 'روابط سريعة',
+  'footer.copyright': '© 2026 KnightyTV. جميع الحقوق محفوظة.'
 };

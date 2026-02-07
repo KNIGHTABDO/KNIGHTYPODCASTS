@@ -6,6 +6,7 @@ import { Button } from '../components/ui/Button';
 import { Input } from '../components/ui/Input';
 import { Card, CardHeader, CardTitle, CardContent, CardFooter } from '../components/ui/Card';
 import { useAuthStore } from '../store/authStore';
+import { useLanguageStore } from '../store/languageStore';
 
 export const AuthPage: React.FC = () => {
   const [isSignIn, setIsSignIn] = useState(true);
@@ -16,28 +17,29 @@ export const AuthPage: React.FC = () => {
   const [isLoading, setIsLoading] = useState(false);
   
   const { signIn, signUp } = useAuthStore();
+  const { translate } = useLanguageStore();
   const navigate = useNavigate();
   
   const validateForm = () => {
     const newErrors: Record<string, string> = {};
     
     if (!email.trim()) {
-      newErrors.email = 'Email is required';
+      newErrors.email = translate('auth.error.required');
     } else if (!/\S+@\S+\.\S+/.test(email)) {
-      newErrors.email = 'Please enter a valid email address';
+      newErrors.email = translate('auth.error.email');
     }
     
     if (!password) {
-      newErrors.password = 'Password is required';
+      newErrors.password = translate('auth.error.required');
     } else if (password.length < 6) {
-      newErrors.password = 'Password must be at least 6 characters';
+      newErrors.password = translate('auth.error.password');
     }
 
     if (!isSignIn) {
       if (!username.trim()) {
-        newErrors.username = 'Username is required';
+        newErrors.username = translate('auth.error.required');
       } else if (!/^[a-zA-Z0-9_]{3,20}$/.test(username)) {
-        newErrors.username = 'Username must be 3-20 characters and can only contain letters, numbers, and underscores';
+        newErrors.username = translate('auth.error.username');
       }
     }
     
@@ -97,7 +99,7 @@ export const AuthPage: React.FC = () => {
             <div className="mx-auto w-12 h-12 flex items-center justify-center rounded-full bg-white text-black mb-4">
               <Lock className="h-6 w-6" />
             </div>
-            <CardTitle>{isSignIn ? 'Sign In' : 'Create Account'}</CardTitle>
+            <CardTitle>{isSignIn ? translate('auth.signIn') : translate('auth.createAccount')}</CardTitle>
           </CardHeader>
           
           <form onSubmit={handleSubmit}>
@@ -109,7 +111,7 @@ export const AuthPage: React.FC = () => {
               )}
               
               <Input
-                label="Email"
+                label={translate('auth.email')}
                 type="email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
@@ -118,7 +120,7 @@ export const AuthPage: React.FC = () => {
               />
               
               <Input
-                label="Password"
+                label={translate('auth.password')}
                 type="password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
@@ -128,7 +130,7 @@ export const AuthPage: React.FC = () => {
 
               {!isSignIn && (
                 <Input
-                  label="Username"
+                  label={translate('auth.username')}
                   value={username}
                   onChange={(e) => setUsername(e.target.value)}
                   error={errors.username}
@@ -145,7 +147,7 @@ export const AuthPage: React.FC = () => {
                 isLoading={isLoading}
                 leftIcon={isSignIn ? <LogIn className="h-4 w-4" /> : <UserPlus className="h-4 w-4" />}
               >
-                {isSignIn ? 'Sign In' : 'Create Account'}
+                {isSignIn ? translate('auth.signIn') : translate('auth.createAccount')}
               </Button>
               
               <button
@@ -154,8 +156,8 @@ export const AuthPage: React.FC = () => {
                 className="text-vercel-muted hover:text-white text-sm transition-colors duration-200"
               >
                 {isSignIn
-                  ? "Don't have an account? Sign Up"
-                  : 'Already have an account? Sign In'}
+                  ? translate('auth.noAccount')
+                  : translate('auth.haveAccount')}
               </button>
             </CardFooter>
           </form>
