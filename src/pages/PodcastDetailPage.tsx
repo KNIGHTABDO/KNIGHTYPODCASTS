@@ -126,6 +126,7 @@ export const PodcastDetailPage: React.FC = () => {
               </div>
 
               {/* Updated Uploader Info */}
+              {podcastUsername && (
               <Link 
                 to={`/profile/${podcastUsername}`}
                 className="flex items-center gap-3 mb-4 hover:opacity-80 transition-opacity"
@@ -150,6 +151,7 @@ export const PodcastDetailPage: React.FC = () => {
                   </p>
                 </div>
               </Link>
+              )}
               
               <div className="flex flex-wrap gap-4 mb-4">
                 <span className="inline-flex items-center text-gray-400 text-sm">
