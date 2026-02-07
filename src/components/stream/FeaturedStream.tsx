@@ -1,9 +1,10 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Play, Clock, Star } from 'lucide-react';
+import { Play, Clock } from 'lucide-react';
 import { Button } from '../ui/Button';
 import { formatDuration } from '../../lib/utils';
 import { Database } from '../../types/supabase';
+import { useLanguageStore } from '../../store/languageStore';
 
 type Stream = Database['public']['Tables']['streams']['Row'];
 
@@ -12,6 +13,8 @@ interface FeaturedStreamProps {
 }
 
 export const FeaturedStream: React.FC<FeaturedStreamProps> = ({ stream }) => {
+  const { translate } = useLanguageStore();
+
   return (
     <div className="relative overflow-hidden rounded-2xl h-[500px] group border border-knighty-border">
       {/* Background Image with Scale Effect */}
@@ -29,7 +32,7 @@ export const FeaturedStream: React.FC<FeaturedStreamProps> = ({ stream }) => {
       <div className="absolute bottom-0 left-0 right-0 p-8 md:p-12 z-10">
         <div className="flex items-center gap-3 mb-4">
            <span className="inline-block bg-knighty-accent text-black text-xs px-3 py-1 rounded font-bold uppercase tracking-wider">
-            Featured
+            {translate('common.featured')}
           </span>
           <span className="inline-block border border-white/20 backdrop-blur-md text-xs text-white px-3 py-1 rounded font-medium uppercase tracking-wider">
             {stream.category}
@@ -52,7 +55,7 @@ export const FeaturedStream: React.FC<FeaturedStreamProps> = ({ stream }) => {
               className="bg-white text-black hover:bg-gray-200 px-8 py-4 text-base font-bold rounded-lg transition-transform active:scale-95"
               leftIcon={<Play className="h-5 w-5 fill-black" />}
             >
-              Watch Now
+              {translate('common.watchNow')}
             </Button>
           </Link>
           

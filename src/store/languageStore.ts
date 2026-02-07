@@ -46,6 +46,10 @@ const englishTranslations: Record<string, string> = {
   'common.delete': 'Delete',
   'common.edit': 'Edit',
   'common.submit': 'Submit',
+  'common.featured': 'Featured',
+  'common.newest': 'Newest Uploads',
+  'common.noContent': 'No featured content',
+  'common.checkBack': 'Check back later for our latest feature.',
 
   // Homepage
   'home.hero.title': 'KnightyTV',
@@ -59,6 +63,7 @@ const englishTranslations: Record<string, string> = {
   'home.features.community': 'Community Learning',
   'home.features.community.desc': 'Join thousands of viewers worldwide seeking knowledge and spiritual growth',
   'home.recentStreams': 'Recent Videos',
+  'home.recentStreams.desc': 'Newest uploads from the community',
   'home.cta.title': 'Ready to Explore Amazing Content?',
   'home.cta.subtitle': 'Discover our collection of videos to deepen your understanding and enrich your knowledge',
   'home.cta.button': 'Browse All Videos',
@@ -142,6 +147,10 @@ const arabicTranslations: Record<string, string> = {
   'common.delete': 'حذف',
   'common.edit': 'تعديل',
   'common.submit': 'إرسال',
+  'common.featured': 'مميز',
+  'common.newest': 'أحدث التحميلات',
+  'common.noContent': 'لا يوجد محتوى مميز',
+  'common.checkBack': 'تحقق لاحقًا للحصول على أحدث ميزاتنا.',
 
   // Homepage
   'home.hero.title': 'KnightyTV',
@@ -155,6 +164,7 @@ const arabicTranslations: Record<string, string> = {
   'home.features.community': 'تعلم جماعي',
   'home.features.community.desc': 'انضم إلى آلاف المشاهدين حول العالم في طلب العلم والنمو الروحي',
   'home.recentStreams': 'أحدث الفيديوهات',
+  'home.recentStreams.desc': 'أحدث التحميلات من المجتمع',
   'home.cta.title': 'هل أنت مستعد لاستكشاف محتوى مذهل؟',
   'home.cta.subtitle': 'اكتشف مجموعتنا من الفيديوهات لتعميق فهمك وإثراء معرفتك',
   'home.cta.button': 'تصفح جميع الفيديوهات',

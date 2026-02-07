@@ -49,8 +49,8 @@ export const HomePage: React.FC = () => {
             <div className="relative h-[500px] bg-knighty-card border border-knighty-border rounded-2xl flex items-center justify-center text-center p-8">
               <div className="max-w-md">
                 <Video className="h-12 w-12 text-knighty-muted mx-auto mb-4" />
-                <h3 className="text-xl font-medium text-white mb-2">No Featured Content</h3>
-                <p className="text-knighty-muted">Check back later for our latest feature.</p>
+                <h3 className="text-xl font-medium text-white mb-2">{translate('common.noContent')}</h3>
+                <p className="text-knighty-muted">{translate('common.checkBack')}</p>
               </div>
             </div>
           )}
@@ -107,7 +107,7 @@ export const HomePage: React.FC = () => {
           <div className="flex justify-between items-end mb-10">
             <div>
               <h2 className="text-2xl font-bold text-white mb-1">{translate('home.recentStreams')}</h2>
-              <p className="text-sm text-knighty-muted">Newest uploads from the community</p>
+              <p className="text-sm text-knighty-muted">{translate('home.recentStreams.desc')}</p>
             </div>
             <Link to="/streams">
               <Button variant="outline" className="text-sm">
