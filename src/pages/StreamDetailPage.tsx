@@ -113,7 +113,8 @@ export const StreamDetailPage: React.FC = () => {
           <div className="lg:col-span-2">
             <VideoPlayer 
               url={currentStream.video_url} 
-              title={currentStream.title} 
+              title={currentStream.title}
+              streamId={currentStream.id} 
             />
             
             <div className="mt-6">
