@@ -59,8 +59,8 @@ export const AboutPage: React.FC = () => {
               <div className="absolute -inset-4 bg-knighty-accent/20 rounded-2xl blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
               <div className="relative rounded-2xl overflow-hidden border border-knighty-border shadow-2xl">
                 <img 
-                  src="https://images.unsplash.com/photo-1585036156171-384164a8c675?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1280&q=80" 
-                  alt="Islamic architecture" 
+                  src="https://images.unsplash.com/photo-1519681393784-d120267933ba?q=80&w=2070&auto=format&fit=crop" 
+                  alt="Starry Night Knowledge" 
                   className="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-knighty-bg via-transparent to-transparent opacity-60" />
