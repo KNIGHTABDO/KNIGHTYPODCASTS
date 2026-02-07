@@ -34,10 +34,6 @@ export const FeaturedStream: React.FC<FeaturedStreamProps> = ({ stream }) => {
           <span className="inline-block border border-white/20 backdrop-blur-md text-xs text-white px-3 py-1 rounded font-medium uppercase tracking-wider">
             {stream.category}
           </span>
-          <div className="flex items-center text-knighty-accent text-sm">
-            <Star className="h-4 w-4 mr-1 fill-current" />
-            <span className="font-bold">4.9</span>
-          </div>
         </div>
 
         <h2 className="text-4xl md:text-5xl font-bold text-white mb-3 tracking-tight leading-tight max-w-3xl">

@@ -55,12 +55,6 @@ export const StreamCard: React.FC<StreamCardProps> = ({ stream }) => {
               {stream.title}
             </h3>
           </div>
-          
-          {/* Rating Placeholder (Static for now, dynamic later) */}
-          <div className="flex items-center text-knighty-muted text-xs shrink-0">
-            <Star className="h-3 w-3 mr-1" />
-            <span>--</span>
-          </div>
         </div>
         
         <p className="mt-2 text-sm text-knighty-muted line-clamp-2 leading-relaxed">
