@@ -50,10 +50,12 @@ export const PodcastDetailPage: React.FC = () => {
     }
   }, [currentPodcast, podcasts]);
 
+  const podcastUsername = currentPodcast?.profiles?.username;
+
   useEffect(() => {
     const loadUploaderProfile = async () => {
-      if (currentPodcast?.username) {
-        const { data } = await fetchProfile(currentPodcast.username);
+      if (podcastUsername) {
+        const { data } = await fetchProfile(podcastUsername);
         if (data && 'id' in data && 'username' in data && 'created_at' in data) {
           setUploaderProfile(data as Profile);
         } else {
@@ -63,7 +65,7 @@ export const PodcastDetailPage: React.FC = () => {
     };
     
     loadUploaderProfile();
-  }, [currentPodcast?.username, fetchProfile]);
+  }, [podcastUsername, fetchProfile]);
   
   if (isLoading || !currentPodcast) {
     return (
@@ -110,7 +112,7 @@ export const PodcastDetailPage: React.FC = () => {
               <div className="flex flex-wrap items-center justify-between gap-4 mb-4">
                 <h1 className="text-2xl md:text-3xl font-bold text-white">{currentPodcast.title}</h1>
                 
-                {user?.username === currentPodcast.username && (
+                {user?.id === currentPodcast.user_id && (
                   <Link to={`/admin/podcasts/${currentPodcast.id}/edit`}>
                     <Button 
                       variant="outline" 
@@ -125,26 +127,26 @@ export const PodcastDetailPage: React.FC = () => {
 
               {/* Updated Uploader Info */}
               <Link 
-                to={`/profile/${currentPodcast.username}`}
+                to={`/profile/${podcastUsername}`}
                 className="flex items-center gap-3 mb-4 hover:opacity-80 transition-opacity"
               >
                 <div className="w-10 h-10 rounded-full bg-vercel-subtle overflow-hidden">
                   <img
-                    src={uploaderProfile?.avatar_url || `https://ui-avatars.com/api/?name=${currentPodcast.username}`}
-                    alt={currentPodcast.username}
+                    src={uploaderProfile?.avatar_url || `https://ui-avatars.com/api/?name=${podcastUsername}`}
+                    alt={podcastUsername}
                     className="w-full h-full object-cover"
                     onError={(e) => {
                       const target = e.target as HTMLImageElement;
-                      target.src = `https://ui-avatars.com/api/?name=${currentPodcast.username}`;
+                      target.src = `https://ui-avatars.com/api/?name=${podcastUsername}`;
                     }}
                   />
                 </div>
                 <div>
                   <p className="text-white font-medium">
-                    {uploaderProfile?.full_name || `@${currentPodcast.username}`}
+                    {uploaderProfile?.full_name || `@${podcastUsername}`}
                   </p>
                   <p className="text-sm text-gray-400">
-                    {uploaderProfile?.full_name ? `@${currentPodcast.username}` : 'Uploaded by'}
+                    {uploaderProfile?.full_name ? `@${podcastUsername}` : 'Uploaded by'}
                   </p>
                 </div>
               </Link>

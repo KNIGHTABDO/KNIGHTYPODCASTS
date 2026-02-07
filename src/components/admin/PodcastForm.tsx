@@ -121,7 +121,6 @@ export const PodcastForm: React.FC<PodcastFormProps> = ({
         const { error } = await addPodcast({
           ...formData,
           user_id: user.id,
-          username: ''
         });
         if (error) throw new Error(error);
         navigate('/admin');

@@ -1,20 +1,23 @@
 import { create } from 'zustand';
 import { supabase } from '../lib/supabase';
 import { Database } from '../types/supabase';
-import { useAuthStore } from './authStore';
 
 type Podcast = Database['public']['Tables']['podcasts']['Row'];
 
+type PodcastWithProfile = Podcast & {
+  profiles: { username: string } | null;
+};
+
 interface PodcastState {
-  podcasts: Podcast[];
-  featuredPodcasts: Podcast[];
-  currentPodcast: Podcast | null;
+  podcasts: PodcastWithProfile[];
+  featuredPodcasts: PodcastWithProfile[];
+  currentPodcast: PodcastWithProfile | null;
   isLoading: boolean;
   error: string | null;
   fetchPodcasts: () => Promise<void>;
   fetchFeaturedPodcasts: () => Promise<void>;
   fetchPodcastById: (id: string) => Promise<void>;
-  fetchPodcastsByUsername: (username: string) => Promise<void>;
+  fetchPodcastsByUserId: (userId: string) => Promise<void>;
   addPodcast: (podcast: Omit<Podcast, 'id' | 'created_at'>) => Promise<{ error: string | null }>;
   updatePodcast: (id: string, podcast: Partial<Podcast>) => Promise<{ error: string | null }>;
   deletePodcast: (id: string) => Promise<{ error: string | null }>;
@@ -57,12 +60,12 @@ export const usePodcastStore = create<PodcastState>((set, get) => ({
     try {
       const { data, error } = await supabase
         .from('podcasts')
-        .select('*')
+        .select('*, profiles!podcasts_user_id_fkey(username)')
         .order('created_at', { ascending: false });
       
       if (error) throw error;
       
-      set({ podcasts: data || [], isLoading: false });
+      set({ podcasts: (data as PodcastWithProfile[]) || [], isLoading: false });
     } catch (error) {
       const errorWithMessage = toErrorWithMessage(error);
       set({ error: errorWithMessage.message, isLoading: false });
@@ -75,13 +78,13 @@ export const usePodcastStore = create<PodcastState>((set, get) => ({
     try {
       const { data, error } = await supabase
         .from('podcasts')
-        .select('*')
+        .select('*, profiles!podcasts_user_id_fkey(username)')
         .order('created_at', { ascending: false })
         .limit(4);
       
       if (error) throw error;
       
-      set({ featuredPodcasts: data || [], isLoading: false });
+      set({ featuredPodcasts: (data as PodcastWithProfile[]) || [], isLoading: false });
     } catch (error) {
       const errorWithMessage = toErrorWithMessage(error);
       set({ error: errorWithMessage.message, isLoading: false });
@@ -94,32 +97,32 @@ export const usePodcastStore = create<PodcastState>((set, get) => ({
     try {
       const { data, error } = await supabase
         .from('podcasts')
-        .select('*')
+        .select('*, profiles!podcasts_user_id_fkey(username)')
         .eq('id', id)
         .single();
       
       if (error) throw error;
       
-      set({ currentPodcast: data, isLoading: false });
+      set({ currentPodcast: data as PodcastWithProfile, isLoading: false });
     } catch (error) {
       const errorWithMessage = toErrorWithMessage(error);
       set({ error: errorWithMessage.message, isLoading: false });
     }
   },
 
-  fetchPodcastsByUsername: async (username: string) => {
+  fetchPodcastsByUserId: async (userId: string) => {
     set({ isLoading: true, error: null });
     
     try {
       const { data, error } = await supabase
         .from('podcasts')
-        .select('*')
-        .eq('username', username)
+        .select('*, profiles!podcasts_user_id_fkey(username)')
+        .eq('user_id', userId)
         .order('created_at', { ascending: false });
       
       if (error) throw error;
       
-      set({ podcasts: data || [], isLoading: false });
+      set({ podcasts: (data as PodcastWithProfile[]) || [], isLoading: false });
     } catch (error) {
       const errorWithMessage = toErrorWithMessage(error);
       set({ error: errorWithMessage.message, isLoading: false });
@@ -128,20 +131,20 @@ export const usePodcastStore = create<PodcastState>((set, get) => ({
 
   addPodcast: async (podcast) => {
     try {
-      const user = useAuthStore.getState().user;
-      if (!user?.username) {
+      const { data: { user: authUser } } = await supabase.auth.getUser();
+      if (!authUser) {
         throw new Error('User not authenticated');
       }
 
       const { data, error } = await supabase
         .from('podcasts')
-        .insert([{ ...podcast, username: user.username }])
-        .select();
+        .insert([{ ...podcast, user_id: authUser.id }])
+        .select('*, profiles!podcasts_user_id_fkey(username)');
       
       if (error) throw error;
       
       if (data) {
-        set({ podcasts: [data[0], ...get().podcasts] });
+        set({ podcasts: [(data[0] as PodcastWithProfile), ...get().podcasts] });
       }
       
       return { error: null };
@@ -157,14 +160,15 @@ export const usePodcastStore = create<PodcastState>((set, get) => ({
         .from('podcasts')
         .update(podcast)
         .eq('id', id)
-        .select();
+        .select('*, profiles!podcasts_user_id_fkey(username)');
       
       if (error) throw error;
       
       if (data) {
+        const updated = data[0] as PodcastWithProfile;
         set({
-          podcasts: get().podcasts.map(p => p.id === id ? data[0] : p),
-          currentPodcast: data[0]
+          podcasts: get().podcasts.map(p => p.id === id ? updated : p),
+          currentPodcast: updated
         });
       }
       
@@ -200,20 +204,20 @@ export const usePodcastStore = create<PodcastState>((set, get) => ({
     set({ isLoading: true, error: null });
     
     try {
-      const user = useAuthStore.getState().user;
-      if (!user?.username) {
+      const { data: { user: authUser } } = await supabase.auth.getUser();
+      if (!authUser) {
         throw new Error('User not authenticated');
       }
 
       const { data, error } = await supabase
         .from('podcasts')
-        .select('*')
-        .eq('username', user.username)
+        .select('*, profiles!podcasts_user_id_fkey(username)')
+        .eq('user_id', authUser.id)
         .order('created_at', { ascending: false });
       
       if (error) throw error;
       
-      set({ podcasts: data || [], isLoading: false });
+      set({ podcasts: (data as PodcastWithProfile[]) || [], isLoading: false });
     } catch (error) {
       const errorWithMessage = toErrorWithMessage(error);
       set({ error: errorWithMessage.message, isLoading: false });
