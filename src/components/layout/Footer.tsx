@@ -32,8 +32,8 @@ export const Footer: React.FC = () => {
                   </Link>
                 </li>
                 <li>
-                  <Link to="/podcasts" className="text-gray-400 hover:text-white text-sm transition-colors">
-                    {translate('nav.videos')}
+                  <Link to="/streams" className="text-gray-400 hover:text-white text-sm transition-colors">
+                    {translate('nav.streams')}
                   </Link>
                 </li>
                 <li>

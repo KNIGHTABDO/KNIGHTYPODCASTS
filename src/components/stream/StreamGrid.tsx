@@ -1,16 +1,16 @@
 import React from 'react';
-import { PodcastCard } from './PodcastCard';
+import { StreamCard } from './StreamCard';
 import { Database } from '../../types/supabase';
 
-type Podcast = Database['public']['Tables']['podcasts']['Row'];
+type Stream = Database['public']['Tables']['streams']['Row'];
 
-interface PodcastGridProps {
-  podcasts: Podcast[];
+interface StreamGridProps {
+  streams: Stream[];
   isLoading?: boolean;
 }
 
-export const PodcastGrid: React.FC<PodcastGridProps> = ({ 
-  podcasts, 
+export const StreamGrid: React.FC<StreamGridProps> = ({ 
+  streams, 
   isLoading = false 
 }) => {
   if (isLoading) {
@@ -35,7 +35,7 @@ export const PodcastGrid: React.FC<PodcastGridProps> = ({
     );
   }
 
-  if (podcasts.length === 0) {
+  if (streams.length === 0) {
     return (
       <div className="text-center py-12">
         <h3 className="text-xl font-medium text-gray-300">No videos found</h3>
@@ -46,8 +46,8 @@ export const PodcastGrid: React.FC<PodcastGridProps> = ({
 
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-      {podcasts.map((podcast) => (
-        <PodcastCard key={podcast.id} podcast={podcast} />
+      {streams.map((stream) => (
+        <StreamCard key={stream.id} stream={stream} />
       ))}
     </div>
   );

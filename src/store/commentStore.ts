@@ -6,7 +6,7 @@ import { AppError, toAppError } from '../types/errors';
 interface Comment {
   id: string;
   created_at: string;
-  podcast_id: string;
+  stream_id: string;
   user_id: string;
   username: string;
   content: string;
@@ -17,8 +17,8 @@ interface CommentState {
   comments: Comment[];
   isLoading: boolean;
   error: AppError | null;
-  fetchComments: (podcastId: string) => Promise<void>;
-  addComment: (podcastId: string, content: string, parentId?: string) => Promise<void>;
+  fetchComments: (streamId: string) => Promise<void>;
+  addComment: (streamId: string, content: string, parentId?: string) => Promise<void>;
   deleteComment: (commentId: string) => Promise<void>;
   updateComment: (commentId: string, content: string) => Promise<void>;
 }
@@ -28,13 +28,13 @@ export const useCommentStore = create<CommentState>((set, get) => ({
   isLoading: false,
   error: null,
 
-  fetchComments: async (podcastId) => {
+  fetchComments: async (streamId) => {
     set({ isLoading: true });
     try {
       const { data, error } = await supabase
         .from('comments')
         .select('*')
-        .eq('podcast_id', podcastId)
+        .eq('stream_id', streamId)
         .order('created_at', { ascending: false });
 
       if (error) throw error;
@@ -45,7 +45,7 @@ export const useCommentStore = create<CommentState>((set, get) => ({
     }
   },
 
-  addComment: async (podcastId, content, parentId = undefined) => {
+  addComment: async (streamId, content, parentId = undefined) => {
     const user = useAuthStore.getState().user;
     if (!user) throw new Error('User not authenticated');
 
@@ -53,7 +53,7 @@ export const useCommentStore = create<CommentState>((set, get) => ({
       const { error } = await supabase
         .from('comments')
         .insert({
-          podcast_id: podcastId,
+          stream_id: streamId,
           user_id: user.id,
           username: user.username,
           content,
@@ -63,7 +63,7 @@ export const useCommentStore = create<CommentState>((set, get) => ({
       if (error) throw error;
       
       // Refresh comments
-      await get().fetchComments(podcastId);
+      await get().fetchComments(streamId);
     } catch (error: unknown) {
       const appError = toAppError(error);
       set({ error: appError });

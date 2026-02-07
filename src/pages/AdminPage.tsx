@@ -4,17 +4,17 @@ import { Plus, Video, Settings } from 'lucide-react';
 import { Layout } from '../components/layout/Layout';
 import { Button } from '../components/ui/Button';
 import { Card, CardHeader, CardTitle, CardContent } from '../components/ui/Card';
-import { PodcastList } from '../components/admin/PodcastList';
-import { usePodcastStore } from '../store/podcastStore';
+import { StreamList } from '../components/admin/StreamList';
+import { useStreamStore } from '../store/streamStore';
 import { useAuthStore } from '../store/authStore';
 
 export const AdminPage: React.FC = () => {
-  const { podcasts, fetchUserPodcasts } = usePodcastStore();
+  const { streams, fetchUserStreams } = useStreamStore();
   const { user, isLoading } = useAuthStore();
   
   useEffect(() => {
-    fetchUserPodcasts();
-  }, [fetchUserPodcasts]);
+    fetchUserStreams();
+  }, [fetchUserStreams]);
   
   if (isLoading) {
     return (
@@ -54,7 +54,7 @@ export const AdminPage: React.FC = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-8">
           <h1 className="text-3xl font-bold text-white mb-4 md:mb-0">Dashboard</h1>
-          <Link to="/admin/podcasts/new">
+          <Link to="/admin/streams/new">
             <Button 
               variant="primary" 
               leftIcon={<Plus className="h-4 w-4" />}
@@ -72,7 +72,7 @@ export const AdminPage: React.FC = () => {
               </div>
               <div>
                 <p className="text-vercel-muted text-sm">Total Videos</p>
-                <h3 className="text-2xl font-bold text-white">{podcasts.length}</h3>
+                <h3 className="text-2xl font-bold text-white">{streams.length}</h3>
               </div>
             </CardContent>
           </Card>
@@ -97,7 +97,7 @@ export const AdminPage: React.FC = () => {
             <CardTitle>Manage Videos</CardTitle>
           </CardHeader>
           <CardContent>
-            <PodcastList />
+            <StreamList />
           </CardContent>
         </Card>
       </div>

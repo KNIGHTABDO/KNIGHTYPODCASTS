@@ -1,13 +1,13 @@
 import React, { useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import { HomePage } from './pages/HomePage';
-import { PodcastsPage } from './pages/PodcastsPage';
-import { PodcastDetailPage } from './pages/PodcastDetailPage';
+import { StreamsPage } from './pages/StreamsPage';
+import { StreamDetailPage } from './pages/StreamDetailPage';
 import { AboutPage } from './pages/AboutPage';
 import { AuthPage } from './pages/AuthPage';
 import { AdminPage } from './pages/AdminPage';
-import { AdminPodcastNewPage } from './pages/AdminPodcastNewPage';
-import { AdminPodcastEditPage } from './pages/AdminPodcastEditPage';
+import { AdminStreamNewPage } from './pages/AdminStreamNewPage';
+import { AdminStreamEditPage } from './pages/AdminStreamEditPage';
 import { NotFoundPage } from './pages/NotFoundPage';
 import { ProfilePage } from './pages/ProfilePage';
 import { useAuthStore } from './store/authStore';
@@ -38,8 +38,8 @@ function App() {
     <Router>
       <Routes>
         <Route path="/" element={<HomePage />} />
-        <Route path="/podcasts" element={<PodcastsPage />} />
-        <Route path="/podcasts/:id" element={<PodcastDetailPage />} />
+        <Route path="/streams" element={<StreamsPage />} />
+        <Route path="/streams/:id" element={<StreamDetailPage />} />
         <Route path="/about" element={<AboutPage />} />
         <Route path="/auth" element={<AuthPage />} />
         <Route path="/profile/:username" element={<ProfilePage />} />
@@ -54,18 +54,18 @@ function App() {
           } 
         />
         <Route 
-          path="/admin/podcasts/new" 
+          path="/admin/streams/new" 
           element={
             <ProtectedRoute>
-              <AdminPodcastNewPage />
+              <AdminStreamNewPage />
             </ProtectedRoute>
           } 
         />
         <Route 
-          path="/admin/podcasts/:id/edit" 
+          path="/admin/streams/:id/edit" 
           element={
             <ProtectedRoute>
-              <AdminPodcastEditPage />
+              <AdminStreamEditPage />
             </ProtectedRoute>
           } 
         />

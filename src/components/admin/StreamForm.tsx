@@ -5,16 +5,16 @@ import { Button } from '../ui/Button';
 import { Input } from '../ui/Input';
 import { TextArea } from '../ui/TextArea';
 import { Card, CardHeader, CardTitle, CardContent, CardFooter } from '../ui/Card';
-import { usePodcastStore } from '../../store/podcastStore';
+import { useStreamStore } from '../../store/streamStore';
 import { useAuthStore } from '../../store/authStore';
 import { Database } from '../../types/supabase';
 import { toAppError } from '../../types/errors';
-import { PodcastUploader } from '../podcast/PodcastUploader';
+import { StreamUploader } from '../stream/StreamUploader';
 
-type Podcast = Database['public']['Tables']['podcasts']['Row'];
+type Stream = Database['public']['Tables']['streams']['Row'];
 
-interface PodcastFormProps {
-  podcast?: Podcast;
+interface StreamFormProps {
+  stream?: Stream;
   isEditing?: boolean;
 }
 
@@ -29,21 +29,21 @@ const CATEGORIES = [
   'Spirituality',
 ];
 
-export const PodcastForm: React.FC<PodcastFormProps> = ({ 
-  podcast, 
+export const StreamForm: React.FC<StreamFormProps> = ({ 
+  stream, 
   isEditing = false 
 }) => {
   const { user } = useAuthStore();
-  const { addPodcast, updatePodcast, deletePodcast } = usePodcastStore();
+  const { addStream, updateStream, deleteStream } = useStreamStore();
   const navigate = useNavigate();
 
   const [formData, setFormData] = useState({
-    title: podcast?.title || '',
-    description: podcast?.description || '',
-    video_url: podcast?.video_url || '',
-    thumbnail_url: podcast?.thumbnail_url || '',
-    category: podcast?.category || CATEGORIES[0],
-    duration: podcast?.duration || 0,
+    title: stream?.title || '',
+    description: stream?.description || '',
+    video_url: stream?.video_url || '',
+    thumbnail_url: stream?.thumbnail_url || '',
+    category: stream?.category || CATEGORIES[0],
+    duration: stream?.duration || 0,
   });
 
   const [errors, setErrors] = useState<Record<string, string>>({});
@@ -113,12 +113,12 @@ export const PodcastForm: React.FC<PodcastFormProps> = ({
     setIsSubmitting(true);
     
     try {
-      if (isEditing && podcast) {
-        const { error } = await updatePodcast(podcast.id, formData);
+      if (isEditing && stream) {
+        const { error } = await updateStream(stream.id, formData);
         if (error) throw new Error(error);
-        navigate(`/podcasts/${podcast.id}`);
+        navigate(`/streams/${stream.id}`);
       } else {
-        const { error } = await addPodcast({
+        const { error } = await addStream({
           ...formData,
           user_id: user.id,
         });
@@ -127,28 +127,28 @@ export const PodcastForm: React.FC<PodcastFormProps> = ({
       }
     } catch (error: unknown) {
       const appError = toAppError(error);
-      console.error('Error saving podcast:', appError);
-      alert(`Failed to save podcast: ${appError.message}`);
+      console.error('Error saving stream:', appError);
+      alert(`Failed to save stream: ${appError.message}`);
     } finally {
       setIsSubmitting(false);
     }
   };
 
   const handleDelete = async () => {
-    if (!podcast || !window.confirm('Are you sure you want to delete this podcast?')) {
+    if (!stream || !window.confirm('Are you sure you want to delete this stream?')) {
       return;
     }
     
     setIsDeleting(true);
     
     try {
-      const { error } = await deletePodcast(podcast.id);
+      const { error } = await deleteStream(stream.id);
       if (error) throw new Error(error);
       navigate('/admin');
     } catch (error: unknown) {
       const appError = toAppError(error);
-      console.error('Error deleting podcast:', appError);
-      alert(`Failed to delete podcast: ${appError.message}`);
+      console.error('Error deleting stream:', appError);
+      alert(`Failed to delete stream: ${appError.message}`);
     } finally {
       setIsDeleting(false);
     }
@@ -166,7 +166,7 @@ export const PodcastForm: React.FC<PodcastFormProps> = ({
             name="title"
             value={formData.title}
             onChange={handleChange}
-            placeholder="Enter podcast title"
+            placeholder="Enter stream title"
             error={errors.title}
             fullWidth
           />
@@ -176,7 +176,7 @@ export const PodcastForm: React.FC<PodcastFormProps> = ({
             name="description"
             value={formData.description}
             onChange={handleChange}
-            placeholder="Enter podcast description"
+            placeholder="Enter stream description"
             error={errors.description}
             fullWidth
           />
@@ -220,7 +220,7 @@ export const PodcastForm: React.FC<PodcastFormProps> = ({
             <label className="text-sm font-medium text-gray-200">
               Media Source
             </label>
-            <PodcastUploader
+            <StreamUploader
               onUrlChange={(url) => 
                 setFormData(prev => ({ ...prev, video_url: url }))
               }
@@ -273,7 +273,7 @@ export const PodcastForm: React.FC<PodcastFormProps> = ({
         </CardContent>
         
         <CardFooter className="flex justify-between">
-          {isEditing && podcast ? (
+          {isEditing && stream ? (
             <Button
               type="button"
               variant="danger"

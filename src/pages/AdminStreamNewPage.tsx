@@ -1,24 +1,13 @@
-import React, { useEffect } from 'react';
-import { useParams, Link } from 'react-router-dom';
+import React from 'react';
 import { Layout } from '../components/layout/Layout';
-import { PodcastForm } from '../components/admin/PodcastForm';
-import { usePodcastStore } from '../store/podcastStore';
+import { StreamForm } from '../components/admin/StreamForm';
 import { useAuthStore } from '../store/authStore';
 import { Card, CardContent } from '../components/ui/Card';
 import { Button } from '../components/ui/Button';
+import { Link } from 'react-router-dom';
 
-export const AdminPodcastEditPage: React.FC = () => {
-  const { id } = useParams<{ id: string }>();
-  const { currentPodcast, isLoading: isPodcastLoading, fetchPodcastById } = usePodcastStore();
-  const { user, isLoading: isAuthLoading } = useAuthStore();
-  
-  useEffect(() => {
-    if (id) {
-      fetchPodcastById(id);
-    }
-  }, [id, fetchPodcastById]);
-  
-  const isLoading = isAuthLoading || isPodcastLoading;
+export const AdminStreamNewPage: React.FC = () => {
+  const { user, isLoading } = useAuthStore();
   
   if (isLoading) {
     return (
@@ -53,26 +42,6 @@ export const AdminPodcastEditPage: React.FC = () => {
     );
   }
   
-  if (!currentPodcast) {
-    return (
-      <Layout>
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-          <Card>
-            <CardContent className="py-12 text-center">
-              <h2 className="text-2xl font-bold text-white mb-4">Video Not Found</h2>
-              <p className="text-vercel-muted mb-6">
-                The video you are trying to edit does not exist.
-              </p>
-              <Link to="/admin">
-                <Button variant="primary">Back to Dashboard</Button>
-              </Link>
-            </CardContent>
-          </Card>
-        </div>
-      </Layout>
-    );
-  }
-  
   return (
     <Layout>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
@@ -80,10 +49,10 @@ export const AdminPodcastEditPage: React.FC = () => {
           <Link to="/admin" className="text-vercel-muted hover:text-white transition-colors duration-200">
             &larr; Back to Dashboard
           </Link>
-          <h1 className="text-3xl font-bold text-white mt-4">Edit Video</h1>
+          <h1 className="text-3xl font-bold text-white mt-4">Add New Video</h1>
         </div>
         
-        <PodcastForm podcast={currentPodcast} isEditing />
+        <StreamForm />
       </div>
     </Layout>
   );

@@ -3,22 +3,22 @@ import { Link } from 'react-router-dom';
 import { Edit, Trash, Clock } from 'lucide-react';
 import { Button } from '../ui/Button';
 import { formatDuration } from '../../lib/utils';
-import { usePodcastStore } from '../../store/podcastStore';
+import { useStreamStore } from '../../store/streamStore';
 import { toAppError } from '../../types/errors';
 
 
-export const PodcastList: React.FC = () => {
-  const { podcasts, isLoading, deletePodcast } = usePodcastStore();
+export const StreamList: React.FC = () => {
+  const { streams, isLoading, deleteStream } = useStreamStore();
   
   const handleDelete = async (id: string, title: string) => {
     if (window.confirm(`Are you sure you want to delete "${title}"?`)) {
       try {
-        const { error } = await deletePodcast(id);
+        const { error } = await deleteStream(id);
         if (error) throw new Error(error);
       } catch (error: unknown) {
         const appError = toAppError(error);
-        console.error('Error deleting podcast:', appError);
-        alert(`Failed to delete podcast: ${appError.message}`);
+        console.error('Error deleting stream:', appError);
+        alert(`Failed to delete stream: ${appError.message}`);
       }
     }
   };
@@ -40,12 +40,12 @@ export const PodcastList: React.FC = () => {
     );
   }
   
-  if (podcasts.length === 0) {
+  if (streams.length === 0) {
     return (
       <div className="text-center py-12 bg-vercel-card border border-vercel-border rounded-lg">
         <h3 className="text-xl font-medium text-gray-300">No videos found</h3>
         <p className="mt-2 text-vercel-muted mb-4">Get started by adding your first video</p>
-        <Link to="/admin/podcasts/new">
+        <Link to="/admin/streams/new">
           <Button variant="primary">Add New Video</Button>
         </Link>
       </div>
@@ -54,38 +54,38 @@ export const PodcastList: React.FC = () => {
   
   return (
     <div className="space-y-4">
-      {podcasts.map((podcast) => (
+      {streams.map((stream) => (
         <div 
-          key={podcast.id} 
+          key={stream.id} 
           className="bg-vercel-card border border-vercel-border rounded-lg overflow-hidden flex flex-col sm:flex-row transition-all duration-200 hover:border-gray-500"
         >
           <div className="sm:w-48 h-32 sm:h-auto">
             <img 
-              src={podcast.thumbnail_url} 
-              alt={podcast.title} 
+              src={stream.thumbnail_url} 
+              alt={stream.title} 
               className="w-full h-full object-cover"
             />
           </div>
           <div className="p-4 flex-grow">
             <div className="flex flex-col sm:flex-row sm:items-center justify-between">
-              <h3 className="text-lg font-semibold text-white">{podcast.title}</h3>
+              <h3 className="text-lg font-semibold text-white">{stream.title}</h3>
               <div className="flex items-center mt-2 sm:mt-0">
                 <span className="text-sm text-gray-400 flex items-center mr-4">
                   <Clock className="h-3 w-3 mr-1" />
-                  {formatDuration(podcast.duration)}
+                  {formatDuration(stream.duration)}
                 </span>
                 <span className="bg-white text-xs text-black px-2 py-1 rounded-full font-medium">
-                  {podcast.category}
+                  {stream.category}
                 </span>
               </div>
             </div>
             <p className="mt-2 text-sm text-gray-400">
-              {podcast.description.length > 120
-                ? `${podcast.description.substring(0, 120)}...`
-                : podcast.description}
+              {stream.description.length > 120
+                ? `${stream.description.substring(0, 120)}...`
+                : stream.description}
             </p>
             <div className="mt-4 flex space-x-2">
-              <Link to={`/admin/podcasts/${podcast.id}/edit`}>
+              <Link to={`/admin/streams/${stream.id}/edit`}>
                 <Button 
                   variant="secondary" 
                   size="sm" 
@@ -98,7 +98,7 @@ export const PodcastList: React.FC = () => {
                 variant="danger" 
                 size="sm" 
                 leftIcon={<Trash className="h-4 w-4" />}
-                onClick={() => handleDelete(podcast.id, podcast.title)}
+                onClick={() => handleDelete(stream.id, stream.title)}
               >
                 Delete
               </Button>

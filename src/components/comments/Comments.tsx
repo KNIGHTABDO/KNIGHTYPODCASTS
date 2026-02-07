@@ -6,7 +6,7 @@ import { Trash2, Edit2, Reply, Send } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
 interface CommentsProps {
-  podcastId: string;
+  streamId: string;
 }
 
 interface CommentType {
@@ -21,7 +21,7 @@ interface CommentWithReplies extends CommentType {
   replies: CommentWithReplies[];
 }
 
-export const Comments: React.FC<CommentsProps> = ({ podcastId }) => {
+export const Comments: React.FC<CommentsProps> = ({ streamId }) => {
   const { comments, fetchComments, addComment, deleteComment, updateComment } = useCommentStore();
   const { user } = useAuthStore();
   const [newComment, setNewComment] = useState('');
@@ -35,21 +35,21 @@ export const Comments: React.FC<CommentsProps> = ({ podcastId }) => {
   const editInputRef = React.useRef<HTMLInputElement>(null);
 
   useEffect(() => {
-    fetchComments(podcastId);
-  }, [fetchComments, podcastId]);
+    fetchComments(streamId);
+  }, [fetchComments, streamId]);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!newComment.trim()) return;
 
-    await addComment(podcastId, newComment);
+    await addComment(streamId, newComment);
     setNewComment('');
   };
 
   const handleReply = async (parentId: string) => {
     if (!replyContent.trim()) return;
 
-    await addComment(podcastId, replyContent, parentId);
+    await addComment(streamId, replyContent, parentId);
     setReplyContent('');
     setReplyingTo(null);
   };

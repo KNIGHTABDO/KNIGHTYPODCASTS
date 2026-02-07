@@ -2,12 +2,12 @@ import React, { useEffect, useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { Clock, Calendar, Edit, ArrowLeft } from 'lucide-react';
 import { Layout } from '../components/layout/Layout';
-import { VideoPlayer } from '../components/podcast/VideoPlayer';
+import { VideoPlayer } from '../components/stream/VideoPlayer';
 import { Button } from '../components/ui/Button';
 import { Card, CardContent } from '../components/ui/Card';
-import { PodcastCard } from '../components/podcast/PodcastCard';
+import { StreamCard } from '../components/stream/StreamCard';
 import { formatDuration } from '../lib/utils';
-import { usePodcastStore } from '../store/podcastStore';
+import { useStreamStore } from '../store/streamStore';
 import { useAuthStore } from '../store/authStore';
 import { Comments } from '../components/comments/Comments';
 
@@ -24,38 +24,38 @@ interface Profile {
   created_at: string;
 }
 
-export const PodcastDetailPage: React.FC = () => {
+export const StreamDetailPage: React.FC = () => {
   const { id } = useParams<{ id: string }>();
-  const { currentPodcast, podcasts, isLoading, fetchPodcastById, fetchPodcasts } = usePodcastStore();
+  const { currentStream, streams, isLoading, fetchStreamById, fetchStreams } = useStreamStore();
   const { user, fetchProfile } = useAuthStore();
-  const [relatedPodcasts, setRelatedPodcasts] = useState<typeof podcasts>([]);
+  const [relatedStreams, setRelatedStreams] = useState<typeof streams>([]);
   const [uploaderProfile, setUploaderProfile] = useState<Profile | null>(null);
 
   useEffect(() => {
     if (id) {
-      fetchPodcastById(id);
+      fetchStreamById(id);
     }
     
-    if (podcasts.length === 0) {
-      fetchPodcasts();
+    if (streams.length === 0) {
+      fetchStreams();
     }
-  }, [id, fetchPodcastById, podcasts.length, fetchPodcasts]);
+  }, [id, fetchStreamById, streams.length, fetchStreams]);
   
   useEffect(() => {
-    if (currentPodcast && podcasts.length > 0) {
-      const related = podcasts
-        .filter(p => p.id !== currentPodcast.id && p.category === currentPodcast.category)
+    if (currentStream && streams.length > 0) {
+      const related = streams
+        .filter(p => p.id !== currentStream.id && p.category === currentStream.category)
         .slice(0, 4);
-      setRelatedPodcasts(related);
+      setRelatedStreams(related);
     }
-  }, [currentPodcast, podcasts]);
+  }, [currentStream, streams]);
 
-  const podcastUsername = currentPodcast?.profiles?.username;
+  const streamUsername = currentStream?.profiles?.username;
 
   useEffect(() => {
     const loadUploaderProfile = async () => {
-      if (podcastUsername) {
-        const { data } = await fetchProfile(podcastUsername);
+      if (streamUsername) {
+        const { data } = await fetchProfile(streamUsername);
         if (data && 'id' in data && 'username' in data && 'created_at' in data) {
           setUploaderProfile(data as Profile);
         } else {
@@ -65,9 +65,9 @@ export const PodcastDetailPage: React.FC = () => {
     };
     
     loadUploaderProfile();
-  }, [podcastUsername, fetchProfile]);
+  }, [streamUsername, fetchProfile]);
   
-  if (isLoading || !currentPodcast) {
+  if (isLoading || !currentStream) {
     return (
       <Layout>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
@@ -85,7 +85,7 @@ export const PodcastDetailPage: React.FC = () => {
     );
   }
   
-  const formattedDate = new Date(currentPodcast.created_at).toLocaleDateString('en-US', {
+  const formattedDate = new Date(currentStream.created_at).toLocaleDateString('en-US', {
     year: 'numeric',
     month: 'long',
     day: 'numeric',
@@ -95,7 +95,7 @@ export const PodcastDetailPage: React.FC = () => {
     <Layout>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <div className="mb-6">
-          <Link to="/podcasts" className="inline-flex items-center text-vercel-muted hover:text-white transition-colors duration-200">
+          <Link to="/streams" className="inline-flex items-center text-vercel-muted hover:text-white transition-colors duration-200">
             <ArrowLeft className="h-4 w-4 mr-1" />
             Back to Videos
           </Link>
@@ -104,16 +104,16 @@ export const PodcastDetailPage: React.FC = () => {
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
           <div className="lg:col-span-2">
             <VideoPlayer 
-              url={currentPodcast.video_url} 
-              title={currentPodcast.title} 
+              url={currentStream.video_url} 
+              title={currentStream.title} 
             />
             
             <div className="mt-6">
               <div className="flex flex-wrap items-center justify-between gap-4 mb-4">
-                <h1 className="text-2xl md:text-3xl font-bold text-white">{currentPodcast.title}</h1>
+                <h1 className="text-2xl md:text-3xl font-bold text-white">{currentStream.title}</h1>
                 
-                {user?.id === currentPodcast.user_id && (
-                  <Link to={`/admin/podcasts/${currentPodcast.id}/edit`}>
+                {user?.id === currentStream.user_id && (
+                  <Link to={`/admin/streams/${currentStream.id}/edit`}>
                     <Button 
                       variant="outline" 
                       size="sm" 
@@ -126,28 +126,28 @@ export const PodcastDetailPage: React.FC = () => {
               </div>
 
               {/* Updated Uploader Info */}
-              {podcastUsername && (
+              {streamUsername && (
               <Link 
-                to={`/profile/${podcastUsername}`}
+                to={`/profile/${streamUsername}`}
                 className="flex items-center gap-3 mb-4 hover:opacity-80 transition-opacity"
               >
                 <div className="w-10 h-10 rounded-full bg-vercel-subtle overflow-hidden">
                   <img
-                    src={uploaderProfile?.avatar_url || `https://ui-avatars.com/api/?name=${podcastUsername}`}
-                    alt={podcastUsername}
+                    src={uploaderProfile?.avatar_url || `https://ui-avatars.com/api/?name=${streamUsername}`}
+                    alt={streamUsername}
                     className="w-full h-full object-cover"
                     onError={(e) => {
                       const target = e.target as HTMLImageElement;
-                      target.src = `https://ui-avatars.com/api/?name=${podcastUsername}`;
+                      target.src = `https://ui-avatars.com/api/?name=${streamUsername}`;
                     }}
                   />
                 </div>
                 <div>
                   <p className="text-white font-medium">
-                    {uploaderProfile?.full_name || `@${podcastUsername}`}
+                    {uploaderProfile?.full_name || `@${streamUsername}`}
                   </p>
                   <p className="text-sm text-gray-400">
-                    {uploaderProfile?.full_name ? `@${podcastUsername}` : 'Uploaded by'}
+                    {uploaderProfile?.full_name ? `@${streamUsername}` : 'Uploaded by'}
                   </p>
                 </div>
               </Link>
@@ -160,17 +160,17 @@ export const PodcastDetailPage: React.FC = () => {
                 </span>
                 <span className="inline-flex items-center text-gray-400 text-sm">
                   <Clock className="h-4 w-4 mr-1" />
-                  {formatDuration(currentPodcast.duration)}
+                  {formatDuration(currentStream.duration)}
                 </span>
                 <span className="inline-block bg-white text-xs text-black px-2 py-1 rounded-full">
-                  {currentPodcast.category}
+                  {currentStream.category}
                 </span>
               </div>
               
               <Card>
                 <CardContent className="pt-4">
                   <h2 className="text-xl font-semibold text-white mb-2">Description</h2>
-                  <p className="text-gray-300 whitespace-pre-line">{currentPodcast.description}</p>
+                  <p className="text-gray-300 whitespace-pre-line">{currentStream.description}</p>
                 </CardContent>
               </Card>
             </div>
@@ -179,10 +179,10 @@ export const PodcastDetailPage: React.FC = () => {
           <div>
             <h2 className="text-xl font-semibold text-white mb-4">Related Videos</h2>
             
-            {relatedPodcasts.length > 0 ? (
+            {relatedStreams.length > 0 ? (
               <div className="space-y-6">
-                {relatedPodcasts.map((podcast) => (
-                  <PodcastCard key={podcast.id} podcast={podcast} />
+                {relatedStreams.map((stream) => (
+                  <StreamCard key={stream.id} stream={stream} />
                 ))}
               </div>
             ) : (
@@ -199,7 +199,7 @@ export const PodcastDetailPage: React.FC = () => {
       {/* Add Comments Section */}
       {id && (
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 pb-12">
-          <Comments podcastId={id} />
+          <Comments streamId={id} />
         </div>
       )}
     </Layout>

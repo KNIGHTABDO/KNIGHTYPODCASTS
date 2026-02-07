@@ -3,7 +3,7 @@ import { useParams, useNavigate } from 'react-router-dom';
 import { Layout } from '../components/layout/Layout';
 import { Button } from '../components/ui/Button';
 import { Input } from '../components/ui/Input';
-import { usePodcastStore } from '../store/podcastStore';
+import { useStreamStore } from '../store/streamStore';
 import { useAuthStore } from '../store/authStore';
 import { Edit2, Globe, Twitter, Facebook, Instagram, Upload } from 'lucide-react';
 import { supabase } from '../lib/supabase';
@@ -22,7 +22,7 @@ export const ProfilePage: React.FC = () => {
   const { username } = useParams<{ username: string }>();
   const navigate = useNavigate();
   const { user, updateProfile, fetchProfile } = useAuthStore();
-  const { podcasts, fetchPodcastsByUserId } = usePodcastStore();
+  const { streams, fetchStreamsByUserId } = useStreamStore();
   const [profile, setProfile] = useState<Profile | null>(null);
   const [isEditing, setIsEditing] = useState(false);
   const [form, setForm] = useState({
@@ -48,11 +48,11 @@ export const ProfilePage: React.FC = () => {
         instagram_url: data?.instagram_url || '',
       });
     }
-    // Fetch podcasts by user_id using the profile's id
+    // Fetch streams by user_id using the profile's id
     if (data && 'id' in data) {
-      fetchPodcastsByUserId((data as { id: string }).id);
+      fetchStreamsByUserId((data as { id: string }).id);
     }
-  }, [fetchProfile, fetchPodcastsByUserId, username, user?.username]);
+  }, [fetchProfile, fetchStreamsByUserId, username, user?.username]);
 
   useEffect(() => {
     if (username) {
@@ -268,21 +268,21 @@ export const ProfilePage: React.FC = () => {
           <div className="mt-12">
             <h2 className="text-2xl font-bold text-white mb-6">Videos</h2>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {podcasts.map((podcast) => (
+              {streams.map((stream) => (
                 <div
-                  key={podcast.id}
+                  key={stream.id}
                   className="bg-black border border-vercel-border rounded-lg overflow-hidden cursor-pointer transform transition-all duration-200 hover:border-gray-500 hover:scale-[1.02]"
-                  onClick={() => navigate(`/podcasts/${podcast.id}`)}
+                  onClick={() => navigate(`/streams/${stream.id}`)}
                 >
                   <img
-                    src={podcast.thumbnail_url}
-                    alt={podcast.title}
+                    src={stream.thumbnail_url}
+                    alt={stream.title}
                     className="w-full h-48 object-cover"
                   />
                   <div className="p-4">
-                    <h3 className="text-white font-semibold mb-2">{podcast.title}</h3>
+                    <h3 className="text-white font-semibold mb-2">{stream.title}</h3>
                     <p className="text-vercel-muted text-sm line-clamp-2">
-                      {podcast.description}
+                      {stream.description}
                     </p>
                   </div>
                 </div>

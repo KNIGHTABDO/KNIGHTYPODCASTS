@@ -28,7 +28,7 @@ export const useLanguageStore = create<LanguageState>()(
 const englishTranslations: Record<string, string> = {
   // Navigation & Common
   'nav.home': 'Home',
-  'nav.videos': 'Videos',
+  'nav.streams': 'Videos',
   'nav.about': 'About',
   'nav.dashboard': 'Dashboard',
   'nav.profile': 'Profile',
@@ -58,18 +58,18 @@ const englishTranslations: Record<string, string> = {
   'home.features.quality.desc': 'Professional video and audio production with clear explanations and engaging presentations',
   'home.features.community': 'Community Learning',
   'home.features.community.desc': 'Join thousands of viewers worldwide seeking knowledge and spiritual growth',
-  'home.recentPodcasts': 'Recent Videos',
+  'home.recentStreams': 'Recent Videos',
   'home.cta.title': 'Ready to Explore Amazing Content?',
   'home.cta.subtitle': 'Discover our collection of videos to deepen your understanding and enrich your knowledge',
   'home.cta.button': 'Browse All Videos',
 
   // Videos Page
-  'podcasts.title': 'Videos',
-  'podcasts.subtitle': 'Explore our collection of videos',
-  'podcasts.filter.category': 'Category',
-  'podcasts.filter.all': 'All Categories',
-  'podcasts.notFound': 'No videos found',
-  'podcasts.tryAgain': 'Try adjusting your search or filter criteria',
+  'streams.title': 'Videos',
+  'streams.subtitle': 'Explore our collection of videos',
+  'streams.filter.category': 'Category',
+  'streams.filter.all': 'All Categories',
+  'streams.notFound': 'No videos found',
+  'streams.tryAgain': 'Try adjusting your search or filter criteria',
 
   // Auth Page
   'auth.signIn': 'Sign In',
@@ -88,15 +88,15 @@ const englishTranslations: Record<string, string> = {
   // Admin Dashboard
   'admin.dashboard': 'Dashboard',
   'admin.addNew': 'Add New Video',
-  'admin.totalPodcasts': 'Total Videos',
-  'admin.managePodcasts': 'Manage Videos',
-  'admin.noPodcasts': 'No videos found',
+  'admin.totalStreams': 'Total Videos',
+  'admin.manageStreams': 'Manage Videos',
+  'admin.noStreams': 'No videos found',
   'admin.startAdding': 'Get started by adding your first video',
 
   // Profile Page
   'profile.edit': 'Edit Profile',
-  'profile.podcasts': 'Videos',
-  'profile.noPodcasts': 'No videos uploaded yet',
+  'profile.streams': 'Videos',
+  'profile.noStreams': 'No videos uploaded yet',
   'profile.joinedDate': 'Joined',
 
   // About Page
@@ -124,7 +124,7 @@ const englishTranslations: Record<string, string> = {
 const arabicTranslations: Record<string, string> = {
   // Navigation & Common
   'nav.home': 'الرئيسية',
-  'nav.videos': 'فيديوهات',
+  'nav.streams': 'فيديوهات',
   'nav.about': 'حول',
   'nav.dashboard': 'لوحة التحكم',
   'nav.profile': 'الملف الشخصي',
@@ -154,18 +154,18 @@ const arabicTranslations: Record<string, string> = {
   'home.features.quality.desc': 'إنتاج فيديو وصوت احترافي مع شرح واضح وعرض جذاب',
   'home.features.community': 'تعلم جماعي',
   'home.features.community.desc': 'انضم إلى آلاف المشاهدين حول العالم في طلب العلم والنمو الروحي',
-  'home.recentPodcasts': 'أحدث الفيديوهات',
+  'home.recentStreams': 'أحدث الفيديوهات',
   'home.cta.title': 'هل أنت مستعد لاستكشاف محتوى مذهل؟',
   'home.cta.subtitle': 'اكتشف مجموعتنا من الفيديوهات لتعميق فهمك وإثراء معرفتك',
   'home.cta.button': 'تصفح جميع الفيديوهات',
 
   // Videos Page
-  'podcasts.title': 'فيديوهات',
-  'podcasts.subtitle': 'استكشف مجموعتنا من الفيديوهات',
-  'podcasts.filter.category': 'الفئة',
-  'podcasts.filter.all': 'كل الفئات',
-  'podcasts.notFound': 'لم يتم العثور على فيديوهات',
-  'podcasts.tryAgain': 'حاول تعديل البحث أو معايير التصفية',
+  'streams.title': 'فيديوهات',
+  'streams.subtitle': 'استكشف مجموعتنا من الفيديوهات',
+  'streams.filter.category': 'الفئة',
+  'streams.filter.all': 'كل الفئات',
+  'streams.notFound': 'لم يتم العثور على فيديوهات',
+  'streams.tryAgain': 'حاول تعديل البحث أو معايير التصفية',
 
   // Auth Page
   'auth.signIn': 'تسجيل الدخول',
@@ -184,15 +184,15 @@ const arabicTranslations: Record<string, string> = {
   // Admin Dashboard
   'admin.dashboard': 'لوحة التحكم',
   'admin.addNew': 'إضافة فيديو جديد',
-  'admin.totalPodcasts': 'إجمالي الفيديوهات',
-  'admin.managePodcasts': 'إدارة الفيديوهات',
-  'admin.noPodcasts': 'لم يتم العثور على فيديوهات',
+  'admin.totalStreams': 'إجمالي الفيديوهات',
+  'admin.manageStreams': 'إدارة الفيديوهات',
+  'admin.noStreams': 'لم يتم العثور على فيديوهات',
   'admin.startAdding': 'ابدأ بإضافة أول فيديو لك',
 
   // Profile Page
   'profile.edit': 'تعديل الملف الشخصي',
-  'profile.podcasts': 'فيديوهات',
-  'profile.noPodcasts': 'لم يتم تحميل أي فيديوهات بعد',
+  'profile.streams': 'فيديوهات',
+  'profile.noStreams': 'لم يتم تحميل أي فيديوهات بعد',
   'profile.joinedDate': 'انضم في',
 
   // About Page

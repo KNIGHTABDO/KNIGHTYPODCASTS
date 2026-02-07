@@ -5,7 +5,7 @@ import { Input } from '../ui/Input';
 import { supabase } from '../../lib/supabase';
 import { useAuthStore } from '../../store/authStore';
 
-interface PodcastUploaderProps {
+interface StreamUploaderProps {
   onUrlChange: (url: string) => void;
   onDurationChange: (duration: number) => void;
   onMethodChange: (method: 'file' | 'url' | 'youtube') => void;
@@ -13,7 +13,7 @@ interface PodcastUploaderProps {
   initialMethod?: 'file' | 'url' | 'youtube';
 }
 
-export const PodcastUploader: React.FC<PodcastUploaderProps> = ({
+export const StreamUploader: React.FC<StreamUploaderProps> = ({
   onUrlChange,
   onDurationChange,
   onMethodChange,
@@ -49,7 +49,7 @@ export const PodcastUploader: React.FC<PodcastUploaderProps> = ({
 
       // Upload file with progress tracking
       const { error: uploadError } = await supabase.storage
-        .from('podcast-files')
+        .from('stream-files')
         .upload(fileName, file, {
           cacheControl: '3600',
           upsert: true
@@ -59,7 +59,7 @@ export const PodcastUploader: React.FC<PodcastUploaderProps> = ({
 
       // Get public URL
       const { data: { publicUrl } } = supabase.storage
-        .from('podcast-files')
+        .from('stream-files')
         .getPublicUrl(fileName);
 
       onUrlChange(publicUrl);

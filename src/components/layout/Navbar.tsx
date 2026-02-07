@@ -43,8 +43,8 @@ export const Navbar: React.FC = () => {
             <Link to="/" className="text-gray-400 hover:text-white px-3 py-2 text-sm transition-colors duration-200">
               {translate('nav.home')}
             </Link>
-            <Link to="/podcasts" className="text-gray-400 hover:text-white px-3 py-2 text-sm transition-colors duration-200">
-              {translate('nav.videos')}
+            <Link to="/streams" className="text-gray-400 hover:text-white px-3 py-2 text-sm transition-colors duration-200">
+              {translate('nav.streams')}
             </Link>
             
             <SearchUsers />
@@ -135,11 +135,11 @@ export const Navbar: React.FC = () => {
               {translate('nav.home')}
             </Link>
             <Link
-              to="/podcasts"
+              to="/streams"
               className="block text-gray-400 hover:text-white px-3 py-2 text-sm transition-colors duration-200"
               onClick={toggleMenu}
             >
-              {translate('nav.videos')}
+              {translate('nav.streams')}
             </Link>
             {user ? (
               <>

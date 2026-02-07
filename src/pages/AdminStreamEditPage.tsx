@@ -1,13 +1,24 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { useParams, Link } from 'react-router-dom';
 import { Layout } from '../components/layout/Layout';
-import { PodcastForm } from '../components/admin/PodcastForm';
+import { StreamForm } from '../components/admin/StreamForm';
+import { useStreamStore } from '../store/streamStore';
 import { useAuthStore } from '../store/authStore';
 import { Card, CardContent } from '../components/ui/Card';
 import { Button } from '../components/ui/Button';
-import { Link } from 'react-router-dom';
 
-export const AdminPodcastNewPage: React.FC = () => {
-  const { user, isLoading } = useAuthStore();
+export const AdminStreamEditPage: React.FC = () => {
+  const { id } = useParams<{ id: string }>();
+  const { currentStream, isLoading: isStreamLoading, fetchStreamById } = useStreamStore();
+  const { user, isLoading: isAuthLoading } = useAuthStore();
+  
+  useEffect(() => {
+    if (id) {
+      fetchStreamById(id);
+    }
+  }, [id, fetchStreamById]);
+  
+  const isLoading = isAuthLoading || isStreamLoading;
   
   if (isLoading) {
     return (
@@ -42,6 +53,26 @@ export const AdminPodcastNewPage: React.FC = () => {
     );
   }
   
+  if (!currentStream) {
+    return (
+      <Layout>
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+          <Card>
+            <CardContent className="py-12 text-center">
+              <h2 className="text-2xl font-bold text-white mb-4">Video Not Found</h2>
+              <p className="text-vercel-muted mb-6">
+                The video you are trying to edit does not exist.
+              </p>
+              <Link to="/admin">
+                <Button variant="primary">Back to Dashboard</Button>
+              </Link>
+            </CardContent>
+          </Card>
+        </div>
+      </Layout>
+    );
+  }
+  
   return (
     <Layout>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
@@ -49,10 +80,10 @@ export const AdminPodcastNewPage: React.FC = () => {
           <Link to="/admin" className="text-vercel-muted hover:text-white transition-colors duration-200">
             &larr; Back to Dashboard
           </Link>
-          <h1 className="text-3xl font-bold text-white mt-4">Add New Video</h1>
+          <h1 className="text-3xl font-bold text-white mt-4">Edit Video</h1>
         </div>
         
-        <PodcastForm />
+        <StreamForm stream={currentStream} isEditing />
       </div>
     </Layout>
   );

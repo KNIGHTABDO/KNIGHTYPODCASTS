@@ -3,32 +3,32 @@ import { Link } from 'react-router-dom';
 import { Play, BookOpen, Video, Users } from 'lucide-react';
 import { Layout } from '../components/layout/Layout';
 import { Button } from '../components/ui/Button';
-import { FeaturedPodcast } from '../components/podcast/FeaturedPodcast';
-import { PodcastGrid } from '../components/podcast/PodcastGrid';
-import { usePodcastStore } from '../store/podcastStore';
+import { FeaturedStream } from '../components/stream/FeaturedStream';
+import { StreamGrid } from '../components/stream/StreamGrid';
+import { useStreamStore } from '../store/streamStore';
 
 export const HomePage: React.FC = () => {
   const { 
-    featuredPodcasts, 
-    podcasts, 
+    featuredStreams, 
+    streams, 
     isLoading, 
-    fetchFeaturedPodcasts, 
-    fetchPodcasts 
-  } = usePodcastStore();
+    fetchFeaturedStreams, 
+    fetchStreams 
+  } = useStreamStore();
 
   useEffect(() => {
-    fetchFeaturedPodcasts();
-    fetchPodcasts();
-  }, [fetchFeaturedPodcasts, fetchPodcasts]);
+    fetchFeaturedStreams();
+    fetchStreams();
+  }, [fetchFeaturedStreams, fetchStreams]);
 
-  const featuredPodcast = featuredPodcasts[0];
+  const featuredStream = featuredStreams[0];
 
   return (
     <Layout>
       {/* Hero Section */}
       <section className="relative">
-        {featuredPodcast ? (
-          <FeaturedPodcast podcast={featuredPodcast} />
+        {featuredStream ? (
+          <FeaturedStream stream={featuredStream} />
         ) : (
           <div className="relative h-[500px] bg-vercel-card animate-pulse">
             <div className="absolute inset-0 bg-gradient-to-t from-black via-black/70 to-transparent" />
@@ -91,13 +91,13 @@ export const HomePage: React.FC = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center mb-8">
             <h2 className="text-2xl font-bold text-white">Recent Videos</h2>
-            <Link to="/podcasts">
+            <Link to="/streams">
               <Button variant="outline">View All</Button>
             </Link>
           </div>
 
-          <PodcastGrid 
-            podcasts={podcasts.slice(0, 8)} 
+          <StreamGrid 
+            streams={streams.slice(0, 8)} 
             isLoading={isLoading} 
           />
         </div>
@@ -110,7 +110,7 @@ export const HomePage: React.FC = () => {
           <p className="text-lg text-vercel-muted max-w-3xl mx-auto mb-8">
             Discover our collection of videos to deepen your understanding and enrich your knowledge
           </p>
-          <Link to="/podcasts">
+          <Link to="/streams">
             <Button 
               variant="primary" 
               size="lg" 

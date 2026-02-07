@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { Search, Filter } from 'lucide-react';
 import { Layout } from '../components/layout/Layout';
-import { PodcastGrid } from '../components/podcast/PodcastGrid';
+import { StreamGrid } from '../components/stream/StreamGrid';
 import { Input } from '../components/ui/Input';
-import { usePodcastStore } from '../store/podcastStore';
+import { useStreamStore } from '../store/streamStore';
 
 const CATEGORIES = [
   'All',
@@ -17,21 +17,21 @@ const CATEGORIES = [
   'Spirituality',
 ];
 
-export const PodcastsPage: React.FC = () => {
-  const { podcasts, isLoading, fetchPodcasts } = usePodcastStore();
+export const StreamsPage: React.FC = () => {
+  const { streams, isLoading, fetchStreams } = useStreamStore();
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedCategory, setSelectedCategory] = useState('All');
   
   useEffect(() => {
-    fetchPodcasts();
-  }, [fetchPodcasts]);
+    fetchStreams();
+  }, [fetchStreams]);
   
-  const filteredPodcasts = podcasts.filter((podcast) => {
-    const matchesSearch = podcast.title.toLowerCase().includes(searchTerm.toLowerCase()) || 
-                         podcast.description.toLowerCase().includes(searchTerm.toLowerCase());
+  const filteredStreams = streams.filter((stream) => {
+    const matchesSearch = stream.title.toLowerCase().includes(searchTerm.toLowerCase()) || 
+                         stream.description.toLowerCase().includes(searchTerm.toLowerCase());
     
     const matchesCategory = selectedCategory === 'All' || 
-                           podcast.category === selectedCategory;
+                           stream.category === selectedCategory;
     
     return matchesSearch && matchesCategory;
   });
@@ -74,7 +74,7 @@ export const PodcastsPage: React.FC = () => {
           </div>
         </div>
         
-        {filteredPodcasts.length === 0 && !isLoading ? (
+        {filteredStreams.length === 0 && !isLoading ? (
           <div className="text-center py-12 bg-vercel-card border border-vercel-border rounded-lg">
             <h3 className="text-xl font-medium text-gray-300">No videos found</h3>
             <p className="mt-2 text-vercel-muted">
@@ -82,7 +82,7 @@ export const PodcastsPage: React.FC = () => {
             </p>
           </div>
         ) : (
-          <PodcastGrid podcasts={filteredPodcasts} isLoading={isLoading} />
+          <StreamGrid streams={filteredStreams} isLoading={isLoading} />
         )}
       </div>
     </Layout>
