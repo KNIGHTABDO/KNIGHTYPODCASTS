@@ -139,17 +139,21 @@ export const useAuthStore = create<AuthState>((set, get) => ({
   checkUser: async () => {
     set({ isLoading: true });
     
-    const { data } = await supabase.auth.getUser();
-    
-    if (data?.user) {
-      set({ 
-        user: { 
-          id: data.user.id, 
-          email: data.user.email || '',
-          username: data.user.user_metadata.username
-        },
-        isAdmin: true, // For simplicity, all authenticated users are admins
-      });
+    try {
+      const { data } = await supabase.auth.getUser();
+      
+      if (data?.user) {
+        set({ 
+          user: { 
+            id: data.user.id, 
+            email: data.user.email || '',
+            username: data.user.user_metadata.username
+          },
+          isAdmin: true, // For simplicity, all authenticated users are admins
+        });
+      }
+    } catch (error) {
+      console.warn('Could not check user session. Please verify Supabase configuration:', error);
     }
     
     set({ isLoading: false });
