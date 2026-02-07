@@ -19,15 +19,15 @@ export const PodcastGrid: React.FC<PodcastGridProps> = ({
         {[...Array(8)].map((_, index) => (
           <div 
             key={index} 
-            className="bg-gray-800 rounded-lg overflow-hidden animate-pulse h-[350px]"
+            className="bg-vercel-card border border-vercel-border rounded-lg overflow-hidden animate-pulse h-[350px]"
           >
-            <div className="h-48 bg-gray-700" />
+            <div className="h-48 bg-vercel-subtle" />
             <div className="p-4 space-y-3">
-              <div className="h-4 bg-gray-700 rounded w-1/4" />
-              <div className="h-6 bg-gray-700 rounded" />
-              <div className="h-4 bg-gray-700 rounded w-3/4" />
-              <div className="h-4 bg-gray-700 rounded w-1/2" />
-              <div className="h-10 bg-gray-700 rounded mt-4" />
+              <div className="h-4 bg-vercel-subtle rounded w-1/4" />
+              <div className="h-6 bg-vercel-subtle rounded" />
+              <div className="h-4 bg-vercel-subtle rounded w-3/4" />
+              <div className="h-4 bg-vercel-subtle rounded w-1/2" />
+              <div className="h-10 bg-vercel-subtle rounded mt-4" />
             </div>
           </div>
         ))}
@@ -38,8 +38,8 @@ export const PodcastGrid: React.FC<PodcastGridProps> = ({
   if (podcasts.length === 0) {
     return (
       <div className="text-center py-12">
-        <h3 className="text-xl font-medium text-gray-300">No podcasts found</h3>
-        <p className="mt-2 text-gray-400">Check back later for new content</p>
+        <h3 className="text-xl font-medium text-gray-300">No videos found</h3>
+        <p className="mt-2 text-vercel-muted">Check back later for new content</p>
       </div>
     );
   }

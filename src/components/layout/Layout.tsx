@@ -11,7 +11,7 @@ export const Layout: React.FC<LayoutProps> = ({ children }) => {
   const { currentLanguage } = useLanguageStore();
 
   return (
-    <div className={`min-h-screen bg-gray-900 ${currentLanguage === 'ar' ? 'rtl' : 'ltr'}`}>
+    <div className={`min-h-screen bg-black ${currentLanguage === 'ar' ? 'rtl' : 'ltr'}`}>
       <Navbar />
       <main>{children}</main>
       <Footer />

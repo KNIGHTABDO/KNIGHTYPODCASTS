@@ -70,12 +70,12 @@ export const PodcastDetailPage: React.FC = () => {
       <Layout>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
           <div className="animate-pulse space-y-8">
-            <div className="aspect-video bg-gray-800 rounded-lg" />
+            <div className="aspect-video bg-vercel-card rounded-lg" />
             <div className="space-y-4">
-              <div className="h-8 bg-gray-800 rounded w-3/4" />
-              <div className="h-4 bg-gray-800 rounded w-1/4" />
-              <div className="h-4 bg-gray-800 rounded w-full" />
-              <div className="h-4 bg-gray-800 rounded w-full" />
+              <div className="h-8 bg-vercel-card rounded w-3/4" />
+              <div className="h-4 bg-vercel-card rounded w-1/4" />
+              <div className="h-4 bg-vercel-card rounded w-full" />
+              <div className="h-4 bg-vercel-card rounded w-full" />
             </div>
           </div>
         </div>
@@ -93,9 +93,9 @@ export const PodcastDetailPage: React.FC = () => {
     <Layout>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <div className="mb-6">
-          <Link to="/podcasts" className="inline-flex items-center text-green-500 hover:text-green-400">
+          <Link to="/podcasts" className="inline-flex items-center text-vercel-muted hover:text-white transition-colors duration-200">
             <ArrowLeft className="h-4 w-4 mr-1" />
-            Back to Podcasts
+            Back to Videos
           </Link>
         </div>
         
@@ -128,7 +128,7 @@ export const PodcastDetailPage: React.FC = () => {
                 to={`/profile/${currentPodcast.username}`}
                 className="flex items-center gap-3 mb-4 hover:opacity-80 transition-opacity"
               >
-                <div className="w-10 h-10 rounded-full bg-gray-700 overflow-hidden">
+                <div className="w-10 h-10 rounded-full bg-vercel-subtle overflow-hidden">
                   <img
                     src={uploaderProfile?.avatar_url || `https://ui-avatars.com/api/?name=${currentPodcast.username}`}
                     alt={currentPodcast.username}
@@ -158,7 +158,7 @@ export const PodcastDetailPage: React.FC = () => {
                   <Clock className="h-4 w-4 mr-1" />
                   {formatDuration(currentPodcast.duration)}
                 </span>
-                <span className="inline-block bg-green-600 text-xs text-white px-2 py-1 rounded-full">
+                <span className="inline-block bg-white text-xs text-black px-2 py-1 rounded-full">
                   {currentPodcast.category}
                 </span>
               </div>
@@ -173,7 +173,7 @@ export const PodcastDetailPage: React.FC = () => {
           </div>
           
           <div>
-            <h2 className="text-xl font-semibold text-white mb-4">Related Podcasts</h2>
+            <h2 className="text-xl font-semibold text-white mb-4">Related Videos</h2>
             
             {relatedPodcasts.length > 0 ? (
               <div className="space-y-6">
@@ -184,7 +184,7 @@ export const PodcastDetailPage: React.FC = () => {
             ) : (
               <Card>
                 <CardContent className="py-6 text-center">
-                  <p className="text-gray-400">No related podcasts found</p>
+                  <p className="text-vercel-muted">No related videos found</p>
                 </CardContent>
               </Card>
             )}

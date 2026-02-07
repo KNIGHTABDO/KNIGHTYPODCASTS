@@ -28,7 +28,7 @@ export const useLanguageStore = create<LanguageState>()(
 const englishTranslations: Record<string, string> = {
   // Navigation & Common
   'nav.home': 'Home',
-  'nav.podcasts': 'Podcasts',
+  'nav.videos': 'Videos',
   'nav.about': 'About',
   'nav.dashboard': 'Dashboard',
   'nav.profile': 'Profile',
@@ -48,27 +48,27 @@ const englishTranslations: Record<string, string> = {
   'common.submit': 'Submit',
 
   // Homepage
-  'home.hero.title': 'Islamic Podcasts',
-  'home.hero.subtitle': 'Authentic Knowledge Through Engaging Content',
-  'home.features.title': 'Why Choose Our Islamic Podcasts',
+  'home.hero.title': 'KnightyTV',
+  'home.hero.subtitle': 'Watch, Discover, and Share Videos',
+  'home.features.title': 'Why Choose KnightyTV',
   'home.features.subtitle': 'Authentic knowledge, engaging content, and spiritual growth all in one place',
   'home.features.authenticity': 'Authentic Knowledge',
   'home.features.authenticity.desc': 'Content based on authentic sources from the Quran and Sunnah, verified by scholars',
   'home.features.quality': 'High-Quality Content',
   'home.features.quality.desc': 'Professional video and audio production with clear explanations and engaging presentations',
   'home.features.community': 'Community Learning',
-  'home.features.community.desc': 'Join thousands of Muslims worldwide seeking knowledge and spiritual growth',
-  'home.recentPodcasts': 'Recent Podcasts',
-  'home.cta.title': 'Ready to Enrich Your Islamic Knowledge?',
-  'home.cta.subtitle': 'Explore our collection of Islamic podcasts and videos to deepen your understanding of Islam',
-  'home.cta.button': 'Browse All Podcasts',
+  'home.features.community.desc': 'Join thousands of viewers worldwide seeking knowledge and spiritual growth',
+  'home.recentPodcasts': 'Recent Videos',
+  'home.cta.title': 'Ready to Explore Amazing Content?',
+  'home.cta.subtitle': 'Discover our collection of videos to deepen your understanding and enrich your knowledge',
+  'home.cta.button': 'Browse All Videos',
 
-  // Podcasts Page
-  'podcasts.title': 'Islamic Podcasts',
-  'podcasts.subtitle': 'Explore our collection of authentic Islamic podcasts',
+  // Videos Page
+  'podcasts.title': 'Videos',
+  'podcasts.subtitle': 'Explore our collection of videos',
   'podcasts.filter.category': 'Category',
   'podcasts.filter.all': 'All Categories',
-  'podcasts.notFound': 'No podcasts found',
+  'podcasts.notFound': 'No videos found',
   'podcasts.tryAgain': 'Try adjusting your search or filter criteria',
 
   // Auth Page
@@ -86,25 +86,25 @@ const englishTranslations: Record<string, string> = {
   'auth.error.username': 'Username must be 3-20 characters and can only contain letters, numbers, and underscores',
 
   // Admin Dashboard
-  'admin.dashboard': 'Admin Dashboard',
-  'admin.addNew': 'Add New Podcast',
-  'admin.totalPodcasts': 'Total Podcasts',
-  'admin.managePodcasts': 'Manage Podcasts',
-  'admin.noPodcasts': 'No podcasts found',
-  'admin.startAdding': 'Get started by adding your first podcast',
+  'admin.dashboard': 'Dashboard',
+  'admin.addNew': 'Add New Video',
+  'admin.totalPodcasts': 'Total Videos',
+  'admin.managePodcasts': 'Manage Videos',
+  'admin.noPodcasts': 'No videos found',
+  'admin.startAdding': 'Get started by adding your first video',
 
   // Profile Page
   'profile.edit': 'Edit Profile',
-  'profile.podcasts': 'Podcasts',
-  'profile.noPodcasts': 'No podcasts uploaded yet',
+  'profile.podcasts': 'Videos',
+  'profile.noPodcasts': 'No videos uploaded yet',
   'profile.joinedDate': 'Joined',
 
   // About Page
-  'about.title': 'About Islamic Podcasts',
-  'about.mission': 'Our mission is to spread authentic Islamic knowledge through engaging podcasts and videos, making it accessible to Muslims worldwide.',
+  'about.title': 'About KnightyTV',
+  'about.mission': 'Our mission is to spread authentic knowledge through engaging videos and content, making it accessible to everyone worldwide.',
   'about.story.title': 'Our Story',
-  'about.story.text1': 'Islamic Podcasts was founded in 2025 with a simple goal: to make authentic Islamic knowledge accessible to everyone.',
-  'about.story.text2': 'What started as a small project has grown into a platform that reaches thousands of Muslims worldwide.',
+  'about.story.text1': 'KnightyTV was founded in 2025 with a simple goal: to make authentic knowledge accessible to everyone.',
+  'about.story.text2': 'What started as a small project has grown into a platform that reaches thousands of viewers worldwide.',
   'about.values.title': 'Our Values',
   'about.team.title': 'Our Team',
   'about.contact.title': 'Get in Touch',
@@ -119,7 +119,7 @@ const englishTranslations: Record<string, string> = {
 const arabicTranslations: Record<string, string> = {
   // Navigation & Common
   'nav.home': 'الرئيسية',
-  'nav.podcasts': 'البودكاست',
+  'nav.videos': 'فيديوهات',
   'nav.about': 'حول',
   'nav.dashboard': 'لوحة التحكم',
   'nav.profile': 'الملف الشخصي',
@@ -139,20 +139,20 @@ const arabicTranslations: Record<string, string> = {
   'common.submit': 'إرسال',
 
   // Homepage
-  'home.hero.title': 'البودكاست الإسلامي',
-  'home.hero.subtitle': 'المعرفة الأصيلة من خلال محتوى جذاب',
-  'home.features.title': 'لماذا تختار بودكاست إسلامي',
+  'home.hero.title': 'KnightyTV',
+  'home.hero.subtitle': 'شاهد، اكتشف، وشارك الفيديوهات',
+  'home.features.title': 'لماذا تختار KnightyTV',
   'home.features.subtitle': 'معرفة أصيلة، محتوى جذاب، ونمو روحي في مكان واحد',
   'home.features.authenticity': 'معرفة أصيلة',
   'home.features.authenticity.desc': 'محتوى مبني على مصادر أصيلة من القرآن والسنة، موثق من العلماء',
   'home.features.quality': 'محتوى عالي الجودة',
   'home.features.quality.desc': 'إنتاج فيديو وصوت احترافي مع شرح واضح وعرض جذاب',
   'home.features.community': 'تعلم جماعي',
-  'home.features.community.desc': 'انضم إلى آلاف المسلمين حول العالم في طلب العلم والنمو الروحي',
-  'home.recentPodcasts': 'أحدث البودكاست',
-  'home.cta.title': 'هل أنت مستعد لإثراء معرفتك الإسلامية؟',
-  'home.cta.subtitle': 'استكشف مجموعتنا من البودكاست والفيديوهات الإسلامية لتعميق فهمك للإسلام',
-  'home.cta.button': 'تصفح جميع البودكاست',
+  'home.features.community.desc': 'انضم إلى آلاف المشاهدين حول العالم في طلب العلم والنمو الروحي',
+  'home.recentPodcasts': 'أحدث الفيديوهات',
+  'home.cta.title': 'هل أنت مستعد لاستكشاف محتوى مذهل؟',
+  'home.cta.subtitle': 'اكتشف مجموعتنا من الفيديوهات لتعميق فهمك وإثراء معرفتك',
+  'home.cta.button': 'تصفح جميع الفيديوهات',
 
   // ... Continue adding Arabic translations for all other sections ...
   // (The pattern continues for all other sections matching the English translations above)

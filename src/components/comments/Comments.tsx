@@ -128,12 +128,12 @@ export const Comments: React.FC<CommentsProps> = ({ podcastId }) => {
     const maxDepth = 3; // Maximum nesting level
 
     return (
-      <div className={`${depth > 0 ? 'ml-6 mt-3 pl-6 border-l border-gray-600' : ''}`}>
-        <div className="bg-gray-700 rounded-lg p-4">
+      <div className={`${depth > 0 ? 'ml-6 mt-3 pl-6 border-l border-vercel-border' : ''}`}>
+        <div className="bg-vercel-card border border-vercel-border rounded-lg p-4">
           <div className="flex justify-between items-start">
             <Link
               to={`/profile/${comment.username}`}
-              className="font-medium text-green-400 hover:text-green-300"
+              className="font-medium text-white hover:text-gray-300 transition-colors duration-200"
             >
               @{comment.username}
             </Link>
@@ -149,7 +149,7 @@ export const Comments: React.FC<CommentsProps> = ({ podcastId }) => {
                 type="text"
                 value={editContent}
                 onChange={handleEditChange}
-                className="w-full bg-gray-600 text-white rounded px-3 py-2"
+                className="w-full bg-black border border-vercel-border text-white rounded px-3 py-2"
                 autoFocus
               />
               <div className="flex gap-2 mt-2">
@@ -210,8 +210,8 @@ export const Comments: React.FC<CommentsProps> = ({ podcastId }) => {
           )}
 
           {replyingTo === comment.id && (
-            <div className="mt-3 bg-gray-600 rounded-lg p-3" onClick={(e) => e.stopPropagation()}>
-              <p className="text-sm text-gray-300 mb-2">
+            <div className="mt-3 bg-vercel-subtle border border-vercel-border rounded-lg p-3" onClick={(e) => e.stopPropagation()}>
+              <p className="text-sm text-vercel-muted mb-2">
                 Replying to @{comment.username}
               </p>
               <input
@@ -220,7 +220,7 @@ export const Comments: React.FC<CommentsProps> = ({ podcastId }) => {
                 value={replyContent}
                 onChange={handleReplyChange}
                 placeholder="Write a reply..."
-                className="w-full bg-gray-700 text-white rounded px-3 py-2 mb-2"
+                className="w-full bg-black border border-vercel-border text-white rounded px-3 py-2 mb-2"
                 autoFocus
               />
               <div className="flex gap-2">
@@ -276,7 +276,7 @@ export const Comments: React.FC<CommentsProps> = ({ podcastId }) => {
               value={newComment}
               onChange={handleCommentChange}
               placeholder="Add a comment..."
-              className="flex-1 bg-gray-700 text-white rounded-lg px-4 py-2"
+              className="flex-1 bg-vercel-card border border-vercel-border text-white rounded-lg px-4 py-2"
               autoComplete="off"
             />
             <Button type="submit" variant="primary" leftIcon={<Send className="h-4 w-4" />}>

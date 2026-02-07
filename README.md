@@ -1,6 +1,6 @@
-# Knighty Podcasts
+# KnightyTV
 
-Knighty Podcasts is a modern, responsive web application for discovering and listening to podcasts. Built with TypeScript, Vite, and Tailwind CSS, it leverages Supabase for backend services and database management. This project aims to provide a fast, scalable, and engaging user experience for podcast enthusiasts.
+KnightyTV is a modern, responsive web application for discovering and watching videos. Built with TypeScript, Vite, and Tailwind CSS, it leverages Supabase for backend services and database management. This project aims to provide a fast, scalable, and engaging user experience for video enthusiasts.
 
 ## Table of Contents
 
@@ -17,11 +17,11 @@ Knighty Podcasts is a modern, responsive web application for discovering and lis
 
 ## Introduction
 
-Knighty Podcasts is designed to streamline the podcast listening experience. Whether you're discovering new episodes, managing your subscriptions, or enjoying curated content, this application is built to deliver a smooth and intuitive experience using modern web technologies.
+KnightyTV is designed to streamline the video watching experience. Whether you're discovering new content, managing your uploads, or enjoying curated videos, this application is built to deliver a smooth and intuitive experience using modern web technologies.
 
 ## Features
 
-- **Podcast Discovery:** Browse and search through a variety of podcasts.
+- **Video Discovery:** Browse and search through a variety of videos.
 - **Responsive Design:** Mobile-first design ensures seamless usability on all devices.
 - **Fast Development:** Utilizes Vite for rapid builds and hot module replacement.
 - **Type Safety:** Developed in TypeScript to minimize runtime errors.

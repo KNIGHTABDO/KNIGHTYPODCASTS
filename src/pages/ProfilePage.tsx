@@ -121,7 +121,7 @@ export const ProfilePage: React.FC = () => {
   return (
     <Layout>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        <div className="bg-gray-800 rounded-lg shadow-xl p-8">
+        <div className="bg-vercel-card border border-vercel-border rounded-lg shadow-xl p-8">
           {/* Profile Header with Avatar */}
           <div className="flex flex-col md:flex-row items-start md:items-center justify-between mb-8">
             <div className="flex items-center gap-4">
@@ -132,8 +132,8 @@ export const ProfilePage: React.FC = () => {
                   className="w-20 h-20 rounded-full object-cover"
                 />
                 {isOwnProfile && (
-                  <label className="absolute bottom-0 right-0 bg-green-500 rounded-full p-2 cursor-pointer hover:bg-green-600 transition-colors">
-                    <Upload className="h-4 w-4 text-white" />
+                  <label className="absolute bottom-0 right-0 bg-white rounded-full p-2 cursor-pointer hover:bg-gray-200 transition-colors">
+                    <Upload className="h-4 w-4 text-black" />
                     <input
                       type="file"
                       className="hidden"
@@ -148,7 +148,7 @@ export const ProfilePage: React.FC = () => {
                 <h1 className="text-3xl font-bold text-white mb-2">
                   {profile?.full_name || username}
                 </h1>
-                <p className="text-gray-400">@{username}</p>
+                <p className="text-vercel-muted">@{username}</p>
               </div>
             </div>
             {isOwnProfile && (
@@ -222,7 +222,7 @@ export const ProfilePage: React.FC = () => {
                     href={profile.website}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-green-500 hover:text-green-400"
+                    className="text-vercel-muted hover:text-white transition-colors duration-200"
                   >
                     <Globe className="h-5 w-5" />
                   </a>
@@ -232,7 +232,7 @@ export const ProfilePage: React.FC = () => {
                     href={profile.twitter_url}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-green-500 hover:text-green-400"
+                    className="text-vercel-muted hover:text-white transition-colors duration-200"
                   >
                     <Twitter className="h-5 w-5" />
                   </a>
@@ -242,7 +242,7 @@ export const ProfilePage: React.FC = () => {
                     href={profile.facebook_url}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-green-500 hover:text-green-400"
+                    className="text-vercel-muted hover:text-white transition-colors duration-200"
                   >
                     <Facebook className="h-5 w-5" />
                   </a>
@@ -252,7 +252,7 @@ export const ProfilePage: React.FC = () => {
                     href={profile.instagram_url}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-green-500 hover:text-green-400"
+                    className="text-vercel-muted hover:text-white transition-colors duration-200"
                   >
                     <Instagram className="h-5 w-5" />
                   </a>
@@ -261,14 +261,14 @@ export const ProfilePage: React.FC = () => {
             </div>
           )}
 
-          {/* User's Podcasts */}
+          {/* User's Videos */}
           <div className="mt-12">
-            <h2 className="text-2xl font-bold text-white mb-6">Podcasts</h2>
+            <h2 className="text-2xl font-bold text-white mb-6">Videos</h2>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
               {podcasts.map((podcast) => (
                 <div
                   key={podcast.id}
-                  className="bg-gray-900 rounded-lg overflow-hidden cursor-pointer transform transition hover:scale-105"
+                  className="bg-black border border-vercel-border rounded-lg overflow-hidden cursor-pointer transform transition-all duration-200 hover:border-gray-500 hover:scale-[1.02]"
                   onClick={() => navigate(`/podcasts/${podcast.id}`)}
                 >
                   <img
@@ -278,7 +278,7 @@ export const ProfilePage: React.FC = () => {
                   />
                   <div className="p-4">
                     <h3 className="text-white font-semibold mb-2">{podcast.title}</h3>
-                    <p className="text-gray-400 text-sm line-clamp-2">
+                    <p className="text-vercel-muted text-sm line-clamp-2">
                       {podcast.description}
                     </p>
                   </div>

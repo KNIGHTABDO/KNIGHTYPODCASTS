@@ -94,7 +94,7 @@ export const AuthPage: React.FC = () => {
       <div className="min-h-[calc(100vh-64px-300px)] flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
         <Card className="w-full max-w-md">
           <CardHeader className="text-center">
-            <div className="mx-auto w-12 h-12 flex items-center justify-center rounded-full bg-green-600 text-white mb-4">
+            <div className="mx-auto w-12 h-12 flex items-center justify-center rounded-full bg-white text-black mb-4">
               <Lock className="h-6 w-6" />
             </div>
             <CardTitle>{isSignIn ? 'Sign In' : 'Create Account'}</CardTitle>
@@ -103,7 +103,7 @@ export const AuthPage: React.FC = () => {
           <form onSubmit={handleSubmit}>
             <CardContent className="space-y-4">
               {errors.form && (
-                <div className="bg-red-500 bg-opacity-10 border border-red-500 text-red-500 px-4 py-3 rounded">
+                <div className="bg-red-500/10 border border-red-500/50 text-red-400 px-4 py-3 rounded-lg text-sm">
                   {errors.form}
                 </div>
               )}
@@ -151,7 +151,7 @@ export const AuthPage: React.FC = () => {
               <button
                 type="button"
                 onClick={toggleAuthMode}
-                className="text-green-500 hover:text-green-400 text-sm"
+                className="text-vercel-muted hover:text-white text-sm transition-colors duration-200"
               >
                 {isSignIn
                   ? "Don't have an account? Sign Up"

@@ -158,7 +158,7 @@ export const PodcastForm: React.FC<PodcastFormProps> = ({
   return (
     <Card className="max-w-3xl mx-auto">
       <CardHeader>
-        <CardTitle>{isEditing ? 'Edit Podcast' : 'Add New Podcast'}</CardTitle>
+        <CardTitle>{isEditing ? 'Edit Video' : 'Add New Video'}</CardTitle>
       </CardHeader>
       <form onSubmit={handleSubmit}>
         <CardContent className="space-y-4">
@@ -191,7 +191,7 @@ export const PodcastForm: React.FC<PodcastFormProps> = ({
                 name="category"
                 value={formData.category}
                 onChange={handleChange}
-                className="w-full rounded-md border border-gray-700 bg-gray-800 px-3 py-2 text-sm text-white focus:outline-none focus:ring-2 focus:ring-green-500"
+                className="w-full rounded-lg border border-vercel-border bg-black px-3 py-2 text-sm text-white focus:outline-none focus:ring-2 focus:ring-white/25 focus:border-gray-500 transition-colors duration-200"
               >
                 {CATEGORIES.map((category) => (
                   <option key={category} value={category}>
@@ -294,7 +294,7 @@ export const PodcastForm: React.FC<PodcastFormProps> = ({
             isLoading={isSubmitting}
             leftIcon={<Save className="h-4 w-4" />}
           >
-            {isEditing ? 'Update' : 'Create'} Podcast
+            {isEditing ? 'Update' : 'Create'} Video
           </Button>
         </CardFooter>
       </form>
