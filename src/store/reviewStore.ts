@@ -10,16 +10,23 @@ export interface Review {
   rating: number; // 0.5 to 5.0
   content: string | null;
   watched_at: string;
+  streams?: { // Join result
+    title: string;
+    thumbnail_url: string;
+    category: string;
+  };
 }
 
 interface ReviewState {
   reviews: Review[];
   userReview: Review | null; // The current user's review for the active stream
+  userHistory: Review[]; // The full history for a profile
   isLoading: boolean;
   error: string | null;
   
   fetchStreamReviews: (streamId: string) => Promise<void>;
   fetchUserReview: (streamId: string) => Promise<void>;
+  fetchUserHistory: (userId: string) => Promise<void>;
   addReview: (streamId: string, rating: number, content?: string, watchedAt?: string) => Promise<void>;
   deleteReview: (reviewId: string) => Promise<void>;
 }
@@ -27,6 +34,7 @@ interface ReviewState {
 export const useReviewStore = create<ReviewState>((set, get) => ({
   reviews: [],
   userReview: null,
+  userHistory: [],
   isLoading: false,
   error: null,
 
@@ -62,6 +70,22 @@ export const useReviewStore = create<ReviewState>((set, get) => ({
       set({ userReview: data || null });
     } catch (err: any) {
       console.error('Error fetching user review:', err);
+    }
+  },
+
+  fetchUserHistory: async (userId) => {
+    set({ isLoading: true, error: null });
+    try {
+      const { data, error } = await supabase
+        .from('reviews')
+        .select('*, streams(title, thumbnail_url, category)')
+        .eq('user_id', userId)
+        .order('watched_at', { ascending: false });
+
+      if (error) throw error;
+      set({ userHistory: data || [], isLoading: false });
+    } catch (err: any) {
+      set({ error: err.message, isLoading: false });
     }
   },
 
