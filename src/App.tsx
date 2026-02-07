@@ -10,6 +10,7 @@ import { AdminStreamNewPage } from './pages/AdminStreamNewPage';
 import { AdminStreamEditPage } from './pages/AdminStreamEditPage';
 import { NotFoundPage } from './pages/NotFoundPage';
 import { ProfilePage } from './pages/ProfilePage';
+import { SettingsPage } from './pages/SettingsPage'; // Import SettingsPage
 import { useAuthStore } from './store/authStore';
 
 function App() {
@@ -44,7 +45,15 @@ function App() {
         <Route path="/auth" element={<AuthPage />} />
         <Route path="/profile/:username" element={<ProfilePage />} />
         
-        {/* Admin Routes */}
+        {/* Protected Routes */}
+        <Route 
+          path="/settings" 
+          element={
+            <ProtectedRoute>
+              <SettingsPage />
+            </ProtectedRoute>
+          } 
+        />
         <Route 
           path="/admin" 
           element={
