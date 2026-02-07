@@ -59,20 +59,20 @@ export const SearchUsers: React.FC = () => {
     <div ref={searchRef} className="relative">
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className="text-gray-300 hover:text-white p-2 rounded-full hover:bg-gray-800"
+        className="text-gray-400 hover:text-white p-2 rounded-full hover:bg-vercel-hover transition-colors duration-200"
       >
         <Search className="h-5 w-5" />
       </button>
 
       {isOpen && (
-        <div className="absolute right-0 mt-2 w-72 bg-gray-800 rounded-lg shadow-lg p-3 z-50">
+        <div className="absolute right-0 mt-2 w-72 bg-vercel-card border border-vercel-border rounded-lg shadow-lg p-3 z-50">
           <div className="relative">
             <input
               type="text"
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
               placeholder="Search users..."
-              className="w-full bg-gray-700 text-white rounded-lg pl-4 pr-10 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-green-500"
+              className="w-full bg-black border border-vercel-border text-white rounded-lg pl-4 pr-10 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-white/25 focus:border-gray-500 transition-colors duration-200"
               autoFocus
             />
             {searchTerm && (
@@ -87,7 +87,7 @@ export const SearchUsers: React.FC = () => {
 
           {isLoading ? (
             <div className="text-center py-4">
-              <div className="w-6 h-6 border-2 border-green-500 border-t-transparent rounded-full animate-spin mx-auto"></div>
+              <div className="w-6 h-6 border-2 border-white border-t-transparent rounded-full animate-spin mx-auto"></div>
             </div>
           ) : results.length > 0 ? (
             <div className="mt-2 space-y-2">
@@ -96,7 +96,7 @@ export const SearchUsers: React.FC = () => {
                   key={profile.username}
                   to={`/profile/${profile.username}`}
                   onClick={() => setIsOpen(false)}
-                  className="flex items-center gap-3 p-2 hover:bg-gray-700 rounded-lg transition-colors"
+                  className="flex items-center gap-3 p-2 hover:bg-vercel-hover rounded-lg transition-colors duration-200"
                 >
                   <img
                     src={profile.avatar_url || `https://ui-avatars.com/api/?name=${profile.username}`}

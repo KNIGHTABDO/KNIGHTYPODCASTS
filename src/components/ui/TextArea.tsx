@@ -12,14 +12,14 @@ export const TextArea = React.forwardRef<HTMLTextAreaElement, TextAreaProps>(
     return (
       <div className={cn('flex flex-col space-y-1.5', fullWidth && 'w-full')}>
         {label && (
-          <label className="text-sm font-medium text-gray-200">
+          <label className="text-sm font-medium text-gray-300">
             {label}
           </label>
         )}
         <textarea
           className={cn(
-            'flex min-h-[120px] rounded-md border border-gray-700 bg-gray-800 px-3 py-2 text-sm text-white placeholder:text-gray-500 focus:outline-none focus:ring-2 focus:ring-green-500 disabled:cursor-not-allowed disabled:opacity-50',
-            error && 'border-red-500 focus:ring-red-500',
+            'flex min-h-[120px] rounded-lg border border-vercel-border bg-black px-3 py-2 text-sm text-white placeholder:text-gray-600 focus:outline-none focus:ring-2 focus:ring-white/25 focus:border-gray-500 transition-colors duration-200 disabled:cursor-not-allowed disabled:opacity-50',
+            error && 'border-red-500 focus:ring-red-500/25',
             fullWidth && 'w-full',
             className
           )}

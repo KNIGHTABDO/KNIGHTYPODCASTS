@@ -19,7 +19,7 @@ export const VideoPlayer: React.FC<VideoPlayerProps> = ({
     <div className="relative aspect-video w-full bg-black rounded-lg overflow-hidden">
       {!isReady && (
         <div className="absolute inset-0 flex items-center justify-center">
-          <div className="w-12 h-12 border-4 border-green-500 border-t-transparent rounded-full animate-spin"></div>
+          <div className="w-12 h-12 border-4 border-white border-t-transparent rounded-full animate-spin"></div>
         </div>
       )}
       <ReactPlayer

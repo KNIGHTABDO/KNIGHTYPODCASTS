@@ -167,7 +167,7 @@ export const PodcastUploader: React.FC<PodcastUploaderProps> = ({
       </div>
 
       {uploadMethod === 'file' ? (
-        <div className="border-2 border-dashed border-gray-700 rounded-lg p-6 text-center">
+        <div className="border-2 border-dashed border-vercel-border rounded-lg p-6 text-center">
           <label className="cursor-pointer">
             <input
               type="file"
@@ -176,20 +176,20 @@ export const PodcastUploader: React.FC<PodcastUploaderProps> = ({
               onChange={handleFileUpload}
               disabled={isUploading}
             />
-            <Upload className="h-8 w-8 mx-auto mb-2 text-gray-400" />
-            <p className="text-gray-400">
+            <Upload className="h-8 w-8 mx-auto mb-2 text-vercel-muted" />
+            <p className="text-vercel-muted">
               {isUploading 
                 ? `Uploading... ${uploadProgress}%`
                 : 'Click to upload or drag and drop video/audio files'}
             </p>
-            <p className="text-gray-500 text-sm mt-1">
+            <p className="text-gray-600 text-sm mt-1">
               Max file size: 500MB
             </p>
           </label>
           {isUploading && (
-            <div className="mt-2 w-full bg-gray-700 rounded-full h-2">
+            <div className="mt-2 w-full bg-vercel-subtle rounded-full h-2">
               <div
-                className="bg-green-500 h-2 rounded-full transition-all duration-300"
+                className="bg-white h-2 rounded-full transition-all duration-300"
                 style={{ width: `${uploadProgress}%` }}
               />
             </div>

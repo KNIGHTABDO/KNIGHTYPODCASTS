@@ -26,16 +26,16 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
     return (
       <button
         className={cn(
-          'inline-flex items-center justify-center rounded-md font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-green-500 disabled:pointer-events-none disabled:opacity-50',
+          'inline-flex items-center justify-center rounded-lg font-medium transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/50 disabled:pointer-events-none disabled:opacity-50',
           {
-            'bg-green-600 text-white hover:bg-green-700': variant === 'primary',
-            'bg-gray-700 text-white hover:bg-gray-800': variant === 'secondary',
-            'border border-gray-600 bg-transparent hover:bg-gray-800': variant === 'outline',
-            'bg-transparent hover:bg-gray-800': variant === 'ghost',
+            'bg-white text-black hover:bg-gray-200': variant === 'primary',
+            'bg-vercel-subtle text-white hover:bg-vercel-border': variant === 'secondary',
+            'border border-vercel-border bg-transparent text-white hover:bg-vercel-hover': variant === 'outline',
+            'bg-transparent text-gray-400 hover:text-white hover:bg-vercel-hover': variant === 'ghost',
             'bg-red-600 text-white hover:bg-red-700': variant === 'danger',
             'h-9 px-3 text-sm': size === 'sm',
-            'h-10 px-4': size === 'md',
-            'h-11 px-6 text-lg': size === 'lg',
+            'h-10 px-4 text-sm': size === 'md',
+            'h-11 px-6 text-base': size === 'lg',
             'w-full': fullWidth,
           },
           className

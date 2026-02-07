@@ -22,8 +22,8 @@ function App() {
   // Protected route component
   const ProtectedRoute = ({ children }: { children: React.ReactNode }) => {
     if (isLoading) {
-      return <div className="min-h-screen bg-gray-900 flex items-center justify-center">
-        <div className="w-12 h-12 border-4 border-green-500 border-t-transparent rounded-full animate-spin"></div>
+      return <div className="min-h-screen bg-black flex items-center justify-center">
+        <div className="w-12 h-12 border-4 border-white border-t-transparent rounded-full animate-spin"></div>
       </div>;
     }
     

@@ -14,8 +14,8 @@ export const AdminPodcastNewPage: React.FC = () => {
       <Layout>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
           <div className="animate-pulse space-y-8">
-            <div className="h-8 bg-gray-800 rounded w-1/4" />
-            <div className="h-64 bg-gray-800 rounded" />
+            <div className="h-8 bg-vercel-card rounded w-1/4" />
+            <div className="h-64 bg-vercel-card rounded" />
           </div>
         </div>
       </Layout>
@@ -29,7 +29,7 @@ export const AdminPodcastNewPage: React.FC = () => {
           <Card>
             <CardContent className="py-12 text-center">
               <h2 className="text-2xl font-bold text-white mb-4">Access Denied</h2>
-              <p className="text-gray-400 mb-6">
+              <p className="text-vercel-muted mb-6">
                 You need to sign in to access the admin area.
               </p>
               <Link to="/auth">
@@ -46,10 +46,10 @@ export const AdminPodcastNewPage: React.FC = () => {
     <Layout>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <div className="mb-8">
-          <Link to="/admin" className="text-green-500 hover:text-green-400">
-            &larr; Back to Admin Dashboard
+          <Link to="/admin" className="text-vercel-muted hover:text-white transition-colors duration-200">
+            &larr; Back to Dashboard
           </Link>
-          <h1 className="text-3xl font-bold text-white mt-4">Add New Podcast</h1>
+          <h1 className="text-3xl font-bold text-white mt-4">Add New Video</h1>
         </div>
         
         <PodcastForm />

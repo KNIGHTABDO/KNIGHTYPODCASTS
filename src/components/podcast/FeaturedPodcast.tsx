@@ -19,10 +19,10 @@ export const FeaturedPodcast: React.FC<FeaturedPodcastProps> = ({ podcast }) => 
         alt={podcast.title} 
         className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
       />
-      <div className="absolute inset-0 bg-gradient-to-t from-gray-900 via-gray-900/70 to-transparent" />
+      <div className="absolute inset-0 bg-gradient-to-t from-black via-black/70 to-transparent" />
       
       <div className="absolute bottom-0 left-0 right-0 p-6 md:p-8">
-        <span className="inline-block bg-green-600 text-xs text-white px-2 py-1 rounded-full mb-3">
+        <span className="inline-block bg-white text-xs text-black px-2 py-1 rounded-full mb-3 font-medium">
           {podcast.category}
         </span>
         <h2 className="text-2xl md:text-3xl font-bold text-white mb-2">

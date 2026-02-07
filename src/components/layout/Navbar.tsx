@@ -30,21 +30,21 @@ export const Navbar: React.FC = () => {
   };
 
   return (
-    <nav className="bg-gray-900 border-b border-gray-800">
+    <nav className="bg-black/80 backdrop-blur-md border-b border-vercel-border sticky top-0 z-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
-          <Link to="/" className="flex-shrink-0">
-            <span className="text-green-500 font-bold text-xl">Podcats</span>
+          <Link to="/" className="flex-shrink-0 flex items-center gap-2">
+            <span className="text-white font-bold text-xl tracking-tight">KnightyTV</span>
           </Link>
 
           {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center space-x-4">
-            <Link to="/" className="text-gray-300 hover:text-white px-3 py-2">
+          <div className="hidden md:flex items-center space-x-1">
+            <Link to="/" className="text-gray-400 hover:text-white px-3 py-2 text-sm transition-colors duration-200">
               {translate('nav.home')}
             </Link>
-            <Link to="/podcasts" className="text-gray-300 hover:text-white px-3 py-2">
-              {translate('nav.podcasts')}
+            <Link to="/podcasts" className="text-gray-400 hover:text-white px-3 py-2 text-sm transition-colors duration-200">
+              {translate('nav.videos')}
             </Link>
             
             <SearchUsers />
@@ -52,22 +52,22 @@ export const Navbar: React.FC = () => {
             
             {user ? (
               <>
-                <Link to="/admin" className="text-gray-300 hover:text-white px-3 py-2">
+                <Link to="/admin" className="text-gray-400 hover:text-white px-3 py-2 text-sm transition-colors duration-200">
                   Dashboard
                 </Link>
                 <div className="relative">
                   <button
                     onClick={toggleProfileMenu}
-                    className="flex items-center text-gray-300 hover:text-white px-3 py-2"
+                    className="flex items-center text-gray-400 hover:text-white px-3 py-2 transition-colors duration-200"
                   >
-                    <UserCircle className="h-6 w-6" />
+                    <UserCircle className="h-5 w-5" />
                   </button>
                   {isProfileMenuOpen && (
-                    <div className="absolute right-0 mt-2 w-48 rounded-md shadow-lg bg-gray-800 ring-1 ring-black ring-opacity-5">
+                    <div className="absolute right-0 mt-2 w-48 rounded-lg shadow-lg bg-vercel-card border border-vercel-border">
                       <div className="py-1" role="menu">
                         <Link
                           to={`/profile/${user.username}`}
-                          className="block px-4 py-2 text-sm text-gray-300 hover:bg-gray-700"
+                          className="block px-4 py-2 text-sm text-gray-400 hover:text-white hover:bg-vercel-hover transition-colors duration-200"
                           role="menuitem"
                         >
                           <div className="flex items-center">
@@ -77,7 +77,7 @@ export const Navbar: React.FC = () => {
                         </Link>
                         <Link
                           to="/settings"
-                          className="block px-4 py-2 text-sm text-gray-300 hover:bg-gray-700"
+                          className="block px-4 py-2 text-sm text-gray-400 hover:text-white hover:bg-vercel-hover transition-colors duration-200"
                           role="menuitem"
                         >
                           <div className="flex items-center">
@@ -87,7 +87,7 @@ export const Navbar: React.FC = () => {
                         </Link>
                         <button
                           onClick={handleSignOut}
-                          className="w-full text-left px-4 py-2 text-sm text-gray-300 hover:bg-gray-700"
+                          className="w-full text-left px-4 py-2 text-sm text-gray-400 hover:text-white hover:bg-vercel-hover transition-colors duration-200"
                           role="menuitem"
                         >
                           <div className="flex items-center">
@@ -101,7 +101,7 @@ export const Navbar: React.FC = () => {
                 </div>
               </>
             ) : (
-              <Button onClick={() => navigate('/auth')} variant="primary">
+              <Button onClick={() => navigate('/auth')} variant="primary" size="sm">
                 {translate('nav.signIn')}
               </Button>
             )}
@@ -111,7 +111,7 @@ export const Navbar: React.FC = () => {
           <div className="md:hidden">
             <button
               onClick={toggleMenu}
-              className="text-gray-400 hover:text-white"
+              className="text-gray-400 hover:text-white transition-colors duration-200"
             >
               {isMenuOpen ? (
                 <X className="h-6 w-6" />
@@ -125,48 +125,48 @@ export const Navbar: React.FC = () => {
 
       {/* Mobile menu */}
       {isMenuOpen && (
-        <div className="md:hidden">
+        <div className="md:hidden border-t border-vercel-border">
           <div className="px-2 pt-2 pb-3 space-y-1">
             <Link
               to="/"
-              className="block text-gray-300 hover:text-white px-3 py-2"
+              className="block text-gray-400 hover:text-white px-3 py-2 text-sm transition-colors duration-200"
               onClick={toggleMenu}
             >
               Home
             </Link>
             <Link
               to="/podcasts"
-              className="block text-gray-300 hover:text-white px-3 py-2"
+              className="block text-gray-400 hover:text-white px-3 py-2 text-sm transition-colors duration-200"
               onClick={toggleMenu}
             >
-              Podcasts
+              Videos
             </Link>
             {user ? (
               <>
                 <Link
                   to="/admin"
-                  className="block text-gray-300 hover:text-white px-3 py-2"
+                  className="block text-gray-400 hover:text-white px-3 py-2 text-sm transition-colors duration-200"
                   onClick={toggleMenu}
                 >
                   Dashboard
                 </Link>
                 <Link
                   to={`/profile/${user.username}`}
-                  className="block text-gray-300 hover:text-white px-3 py-2"
+                  className="block text-gray-400 hover:text-white px-3 py-2 text-sm transition-colors duration-200"
                   onClick={toggleMenu}
                 >
                   Profile
                 </Link>
                 <Link
                   to="/settings"
-                  className="block text-gray-300 hover:text-white px-3 py-2"
+                  className="block text-gray-400 hover:text-white px-3 py-2 text-sm transition-colors duration-200"
                   onClick={toggleMenu}
                 >
                   Settings
                 </Link>
                 <button
                   onClick={handleSignOut}
-                  className="block w-full text-left text-gray-300 hover:text-white px-3 py-2"
+                  className="block w-full text-left text-gray-400 hover:text-white px-3 py-2 text-sm transition-colors duration-200"
                 >
                   Sign Out
                 </button>

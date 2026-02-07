@@ -24,19 +24,19 @@ export const PodcastCard: React.FC<PodcastCardProps> = ({ podcast }) => {
           alt={podcast.title} 
           className="w-full h-48 object-cover"
         />
-        <div className="absolute bottom-2 right-2 bg-gray-900 bg-opacity-75 px-2 py-1 rounded-md flex items-center">
+        <div className="absolute bottom-2 right-2 bg-black/75 px-2 py-1 rounded-md flex items-center">
           <Clock className="h-3 w-3 text-gray-300 mr-1" />
           <span className="text-xs text-gray-300">{formatDuration(podcast.duration)}</span>
         </div>
       </div>
       <CardContent className="flex-grow flex flex-col">
         <div className="mt-2">
-          <span className="inline-block bg-green-600 text-xs text-white px-2 py-1 rounded-full">
+          <span className="inline-block bg-white text-xs text-black px-2 py-1 rounded-full font-medium">
             {podcast.category}
           </span>
         </div>
         <h3 className="mt-2 text-lg font-semibold text-white">{podcast.title}</h3>
-        <p className="mt-1 text-sm text-gray-400 flex-grow">
+        <p className="mt-1 text-sm text-vercel-muted flex-grow">
           {truncateText(podcast.description, 100)}
         </p>
         <div className="mt-4">

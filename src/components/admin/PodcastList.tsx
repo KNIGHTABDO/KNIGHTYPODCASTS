@@ -29,11 +29,11 @@ export const PodcastList: React.FC = () => {
         {[...Array(3)].map((_, index) => (
           <div 
             key={index} 
-            className="bg-gray-800 rounded-lg p-4 animate-pulse"
+            className="bg-vercel-card border border-vercel-border rounded-lg p-4 animate-pulse"
           >
-            <div className="h-6 bg-gray-700 rounded w-1/4 mb-3" />
-            <div className="h-4 bg-gray-700 rounded w-3/4 mb-2" />
-            <div className="h-4 bg-gray-700 rounded w-1/2" />
+            <div className="h-6 bg-vercel-subtle rounded w-1/4 mb-3" />
+            <div className="h-4 bg-vercel-subtle rounded w-3/4 mb-2" />
+            <div className="h-4 bg-vercel-subtle rounded w-1/2" />
           </div>
         ))}
       </div>
@@ -42,11 +42,11 @@ export const PodcastList: React.FC = () => {
   
   if (podcasts.length === 0) {
     return (
-      <div className="text-center py-12 bg-gray-800 rounded-lg">
-        <h3 className="text-xl font-medium text-gray-300">No podcasts found</h3>
-        <p className="mt-2 text-gray-400 mb-4">Get started by adding your first podcast</p>
+      <div className="text-center py-12 bg-vercel-card border border-vercel-border rounded-lg">
+        <h3 className="text-xl font-medium text-gray-300">No videos found</h3>
+        <p className="mt-2 text-vercel-muted mb-4">Get started by adding your first video</p>
         <Link to="/admin/podcasts/new">
-          <Button variant="primary">Add New Podcast</Button>
+          <Button variant="primary">Add New Video</Button>
         </Link>
       </div>
     );
@@ -57,7 +57,7 @@ export const PodcastList: React.FC = () => {
       {podcasts.map((podcast) => (
         <div 
           key={podcast.id} 
-          className="bg-gray-800 rounded-lg overflow-hidden flex flex-col sm:flex-row"
+          className="bg-vercel-card border border-vercel-border rounded-lg overflow-hidden flex flex-col sm:flex-row transition-all duration-200 hover:border-gray-500"
         >
           <div className="sm:w-48 h-32 sm:h-auto">
             <img 
@@ -74,7 +74,7 @@ export const PodcastList: React.FC = () => {
                   <Clock className="h-3 w-3 mr-1" />
                   {formatDuration(podcast.duration)}
                 </span>
-                <span className="bg-green-600 text-xs text-white px-2 py-1 rounded-full">
+                <span className="bg-white text-xs text-black px-2 py-1 rounded-full font-medium">
                   {podcast.category}
                 </span>
               </div>
