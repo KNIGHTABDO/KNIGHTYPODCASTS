@@ -19,15 +19,20 @@ export const StreamGrid: React.FC<StreamGridProps> = ({
         {[...Array(8)].map((_, index) => (
           <div 
             key={index} 
-            className="bg-vercel-card border border-vercel-border rounded-lg overflow-hidden animate-pulse h-[350px]"
+            className="bg-knighty-card border border-knighty-border rounded-xl overflow-hidden animate-pulse h-full"
           >
-            <div className="h-48 bg-vercel-subtle" />
+            {/* Thumbnail Skeleton */}
+            <div className="aspect-video bg-knighty-hover" />
+            
+            {/* Content Skeleton */}
             <div className="p-4 space-y-3">
-              <div className="h-4 bg-vercel-subtle rounded w-1/4" />
-              <div className="h-6 bg-vercel-subtle rounded" />
-              <div className="h-4 bg-vercel-subtle rounded w-3/4" />
-              <div className="h-4 bg-vercel-subtle rounded w-1/2" />
-              <div className="h-10 bg-vercel-subtle rounded mt-4" />
+              <div className="flex justify-between">
+                <div className="h-3 bg-knighty-hover rounded w-1/4" />
+                <div className="h-3 bg-knighty-hover rounded w-8" />
+              </div>
+              <div className="h-5 bg-knighty-hover rounded w-3/4" />
+              <div className="h-3 bg-knighty-hover rounded w-full" />
+              <div className="h-3 bg-knighty-hover rounded w-2/3" />
             </div>
           </div>
         ))}
@@ -37,9 +42,9 @@ export const StreamGrid: React.FC<StreamGridProps> = ({
 
   if (streams.length === 0) {
     return (
-      <div className="text-center py-12">
-        <h3 className="text-xl font-medium text-gray-300">No videos found</h3>
-        <p className="mt-2 text-vercel-muted">Check back later for new content</p>
+      <div className="text-center py-20">
+        <h3 className="text-xl font-medium text-white">No videos found</h3>
+        <p className="mt-2 text-knighty-muted">Check back later for new content</p>
       </div>
     );
   }

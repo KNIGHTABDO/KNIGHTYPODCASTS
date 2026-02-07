@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Play, Clock } from 'lucide-react';
+import { Play, Clock, Star } from 'lucide-react';
 import { Button } from '../ui/Button';
 import { formatDuration } from '../../lib/utils';
 import { Database } from '../../types/supabase';
@@ -13,37 +13,56 @@ interface FeaturedStreamProps {
 
 export const FeaturedStream: React.FC<FeaturedStreamProps> = ({ stream }) => {
   return (
-    <div className="relative overflow-hidden rounded-lg h-[500px] group">
+    <div className="relative overflow-hidden rounded-2xl h-[500px] group border border-knighty-border">
+      {/* Background Image with Scale Effect */}
       <img 
         src={stream.thumbnail_url} 
         alt={stream.title} 
-        className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+        className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
       />
-      <div className="absolute inset-0 bg-gradient-to-t from-black via-black/70 to-transparent" />
       
-      <div className="absolute bottom-0 left-0 right-0 p-6 md:p-8">
-        <span className="inline-block bg-white text-xs text-black px-2 py-1 rounded-full mb-3 font-medium">
-          {stream.category}
-        </span>
-        <h2 className="text-2xl md:text-3xl font-bold text-white mb-2">
+      {/* Cinematic Gradients */}
+      <div className="absolute inset-0 bg-gradient-to-t from-knighty-bg via-knighty-bg/80 to-transparent" />
+      <div className="absolute inset-0 bg-gradient-to-r from-knighty-bg/90 via-transparent to-transparent" />
+      
+      {/* Content */}
+      <div className="absolute bottom-0 left-0 right-0 p-8 md:p-12 z-10">
+        <div className="flex items-center gap-3 mb-4">
+           <span className="inline-block bg-knighty-accent text-black text-xs px-3 py-1 rounded font-bold uppercase tracking-wider">
+            Featured
+          </span>
+          <span className="inline-block border border-white/20 backdrop-blur-md text-xs text-white px-3 py-1 rounded font-medium uppercase tracking-wider">
+            {stream.category}
+          </span>
+          <div className="flex items-center text-knighty-accent text-sm">
+            <Star className="h-4 w-4 mr-1 fill-current" />
+            <span className="font-bold">4.9</span>
+          </div>
+        </div>
+
+        <h2 className="text-4xl md:text-5xl font-bold text-white mb-3 tracking-tight leading-tight max-w-3xl">
           {stream.title}
         </h2>
-        <p className="text-gray-300 mb-4 max-w-2xl">
-          {stream.title}
+        
+        <p className="text-knighty-muted mb-8 max-w-2xl text-lg leading-relaxed line-clamp-2">
+          {stream.description || stream.title}
         </p>
-        <div className="flex items-center space-x-4">
+        
+        <div className="flex items-center gap-4">
           <Link to={`/streams/${stream.id}`}>
             <Button 
               variant="primary" 
               size="lg" 
-              leftIcon={<Play className="h-5 w-5" />}
+              className="bg-white text-black hover:bg-gray-200 px-8 py-4 text-base font-bold rounded-lg transition-transform active:scale-95"
+              leftIcon={<Play className="h-5 w-5 fill-black" />}
             >
               Watch Now
             </Button>
           </Link>
-          <div className="flex items-center text-gray-300">
-            <Clock className="h-4 w-4 mr-1" />
-            <span>{formatDuration(stream.duration)}</span>
+          
+          <div className="flex items-center text-white/80 bg-white/5 backdrop-blur-md px-4 py-3 rounded-lg border border-white/10">
+            <Clock className="h-5 w-5 mr-2 text-knighty-accent" />
+            <span className="font-medium">{formatDuration(stream.duration)}</span>
           </div>
         </div>
       </div>
