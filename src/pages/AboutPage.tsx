@@ -1,189 +1,200 @@
 import React from 'react';
 import { Layout } from '../components/layout/Layout';
-import { BookOpen, Video, Users, Heart, Mail } from 'lucide-react';
+import { BookOpen, Video, Users, Heart, Mail, Tv, Shield, Globe } from 'lucide-react';
 import { Button } from '../components/ui/Button';
+import { useLanguageStore } from '../store/languageStore';
 
 export const AboutPage: React.FC = () => {
+  const { translate } = useLanguageStore();
+
   return (
     <Layout>
       {/* Hero Section */}
-      <section className="relative py-20 border-b border-vercel-border">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h1 className="text-4xl font-bold text-white mb-4">About KnightyTV</h1>
-          <p className="text-lg text-vercel-muted max-w-3xl mx-auto">
-            Our mission is to spread authentic knowledge through engaging videos and content, making it accessible to everyone worldwide.
+      <section className="relative py-24 md:py-32 overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-b from-knighty-bg via-transparent to-knighty-bg z-0" />
+        <div className="absolute inset-0 opacity-20 bg-[url('https://images.unsplash.com/photo-1519681393784-d120267933ba?q=80&w=2070&auto=format&fit=crop')] bg-cover bg-center" />
+        
+        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <span className="inline-block bg-knighty-accent text-black text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider mb-6">
+            Our Mission
+          </span>
+          <h1 className="text-5xl md:text-7xl font-bold text-white mb-6 tracking-tight">
+            {translate('about.title')}
+          </h1>
+          <p className="text-xl md:text-2xl text-knighty-muted max-w-3xl mx-auto leading-relaxed">
+            {translate('about.mission')}
           </p>
         </div>
       </section>
 
       {/* Our Story Section */}
-      <section className="py-20">
+      <section className="py-24 bg-knighty-card/20 border-y border-knighty-border/50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
-            <div>
-              <h2 className="text-3xl font-bold text-white mb-6">Our Story</h2>
-              <p className="text-gray-400 mb-4">
-                KnightyTV was founded in 2025 with a simple goal: to make authentic knowledge accessible to everyone. We recognized the need for high-quality, engaging content that presents teachings in a way that resonates with modern audiences.
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+            <div className="space-y-6">
+              <h2 className="text-3xl md:text-4xl font-bold text-white mb-6 flex items-center gap-3">
+                <span className="w-12 h-1 bg-knighty-accent rounded-full block"></span>
+                {translate('about.story.title')}
+              </h2>
+              <p className="text-lg text-knighty-muted leading-relaxed">
+                {translate('about.story.text1')}
               </p>
-              <p className="text-gray-400 mb-4">
-                What started as a small project has grown into a platform that reaches thousands of viewers worldwide. Our team consists of dedicated individuals who are passionate about creating content that is both educational and inspiring.
+              <p className="text-lg text-knighty-muted leading-relaxed">
+                {translate('about.story.text2')}
               </p>
-              <p className="text-gray-400">
-                We collaborate with scholars and educators to ensure that our content is accurate and authentic. Our videos cover a wide range of topics, from educational content to spiritual development.
-              </p>
+              
+              <div className="grid grid-cols-2 gap-6 mt-8">
+                <div className="bg-knighty-card border border-knighty-border p-4 rounded-xl">
+                  <div className="text-3xl font-bold text-white mb-1">500+</div>
+                  <div className="text-sm text-knighty-muted uppercase tracking-wide">Videos</div>
+                </div>
+                <div className="bg-knighty-card border border-knighty-border p-4 rounded-xl">
+                  <div className="text-3xl font-bold text-white mb-1">10k+</div>
+                  <div className="text-sm text-knighty-muted uppercase tracking-wide">Community</div>
+                </div>
+              </div>
             </div>
-            <div className="rounded-lg overflow-hidden border border-vercel-border">
-              <img 
-                src="https://images.unsplash.com/photo-1585036156171-384164a8c675?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1280&q=80" 
-                alt="Islamic architecture" 
-                className="w-full h-full object-cover"
-              />
+            
+            <div className="relative group">
+              <div className="absolute -inset-4 bg-knighty-accent/20 rounded-2xl blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+              <div className="relative rounded-2xl overflow-hidden border border-knighty-border shadow-2xl">
+                <img 
+                  src="https://images.unsplash.com/photo-1585036156171-384164a8c675?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1280&q=80" 
+                  alt="Islamic architecture" 
+                  className="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-knighty-bg via-transparent to-transparent opacity-60" />
+              </div>
             </div>
           </div>
         </div>
       </section>
 
       {/* Our Values Section */}
-      <section className="py-20 border-t border-vercel-border">
+      <section className="py-24">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-3xl font-bold text-white mb-12 text-center">Our Values</h2>
+          <div className="text-center mb-16">
+            <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">{translate('about.values.title')}</h2>
+            <p className="text-knighty-muted max-w-2xl mx-auto">The core principles that drive everything we do at KnightyTV.</p>
+          </div>
           
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-            <div className="bg-vercel-card border border-vercel-border p-6 rounded-lg text-center transition-all duration-200 hover:border-gray-500">
-              <div className="mx-auto w-12 h-12 flex items-center justify-center rounded-full bg-white text-black mb-4">
-                <BookOpen className="h-6 w-6" />
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+            {[
+              { icon: Shield, title: 'Authenticity', desc: 'Committed to verified, reliable sources.' },
+              { icon: Tv, title: 'Quality', desc: 'Cinematic production and clear audio.' },
+              { icon: Globe, title: 'Inclusivity', desc: 'Content accessible to everyone, everywhere.' },
+              { icon: Heart, title: 'Community', desc: 'Growing together in faith and knowledge.' },
+            ].map((value, index) => (
+              <div key={index} className="group bg-knighty-card border border-knighty-border p-8 rounded-xl text-center hover:border-knighty-accent/30 transition-all duration-300">
+                <div className="mx-auto w-14 h-14 flex items-center justify-center rounded-full bg-knighty-hover text-white mb-6 group-hover:bg-knighty-accent group-hover:text-black transition-colors">
+                  <value.icon className="h-6 w-6" />
+                </div>
+                <h3 className="text-xl font-semibold text-white mb-3">{value.title}</h3>
+                <p className="text-knighty-muted text-sm leading-relaxed">
+                  {value.desc}
+                </p>
               </div>
-              <h3 className="text-lg font-semibold text-white mb-2">Authenticity</h3>
-              <p className="text-vercel-muted text-sm">
-                We are committed to presenting authentic knowledge based on verified sources.
-              </p>
-            </div>
-
-            <div className="bg-vercel-card border border-vercel-border p-6 rounded-lg text-center transition-all duration-200 hover:border-gray-500">
-              <div className="mx-auto w-12 h-12 flex items-center justify-center rounded-full bg-white text-black mb-4">
-                <Video className="h-6 w-6" />
-              </div>
-              <h3 className="text-lg font-semibold text-white mb-2">Quality</h3>
-              <p className="text-vercel-muted text-sm">
-                We strive for excellence in content and production, ensuring our videos are engaging and informative.
-              </p>
-            </div>
-
-            <div className="bg-vercel-card border border-vercel-border p-6 rounded-lg text-center transition-all duration-200 hover:border-gray-500">
-              <div className="mx-auto w-12 h-12 flex items-center justify-center rounded-full bg-white text-black mb-4">
-                <Users className="h-6 w-6" />
-              </div>
-              <h3 className="text-lg font-semibold text-white mb-2">Inclusivity</h3>
-              <p className="text-vercel-muted text-sm">
-                We create content that is accessible to everyone of all backgrounds and levels of knowledge.
-              </p>
-            </div>
-
-            <div className="bg-vercel-card border border-vercel-border p-6 rounded-lg text-center transition-all duration-200 hover:border-gray-500">
-              <div className="mx-auto w-12 h-12 flex items-center justify-center rounded-full bg-white text-black mb-4">
-                <Heart className="h-6 w-6" />
-              </div>
-              <h3 className="text-lg font-semibold text-white mb-2">Community</h3>
-              <p className="text-vercel-muted text-sm">
-                We foster a supportive community where people can learn and grow together.
-              </p>
-            </div>
+            ))}
           </div>
         </div>
       </section>
 
       {/* Team Section */}
-      <section className="py-20 border-t border-vercel-border">
+      <section className="py-24 border-t border-knighty-border/50 bg-knighty-card/20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-3xl font-bold text-white mb-12 text-center">Our Team</h2>
+          <h2 className="text-3xl md:text-4xl font-bold text-white mb-16 text-center">{translate('about.team.title')}</h2>
           
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            <div className="bg-vercel-card border border-vercel-border rounded-lg overflow-hidden transition-all duration-200 hover:border-gray-500">
-              <img 
-                src="https://cdn.talkie-ai.com/talkie-user-img/82979249090716/122750949904503-2.jpeg" 
-                alt="Team member" 
-                className="w-full h-64 object-cover"
-              />
+          <div className="flex justify-center">
+            <div className="group bg-knighty-card border border-knighty-border rounded-xl overflow-hidden hover:border-knighty-accent/50 transition-all duration-300 max-w-sm w-full">
+              <div className="aspect-[4/5] overflow-hidden relative">
+                <img 
+                  src="https://cdn.talkie-ai.com/talkie-user-img/82979249090716/122750949904503-2.jpeg" 
+                  alt="Team member" 
+                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-knighty-card to-transparent opacity-80" />
+                <div className="absolute bottom-4 left-4 right-4">
+                  <h3 className="text-2xl font-bold text-white mb-1">KNIGHT</h3>
+                  <p className="text-knighty-accent font-bold text-sm tracking-widest uppercase">Owner & Founder</p>
+                </div>
+              </div>
               <div className="p-6">
-                <h3 className="text-xl font-semibold text-white mb-1">KNIGHT</h3>
-                <p className="text-white font-medium text-sm mb-3">OWNER</p>
-                <p className="text-vercel-muted text-sm">
-                  WEB DEVELOPPER
+                <p className="text-knighty-muted text-sm leading-relaxed">
+                  Lead Developer and visionary behind KnightyTV. Dedicated to merging technology with authentic knowledge sharing.
                 </p>
               </div>
             </div>
-            
-       
-           
           </div>
         </div>
       </section>
 
       {/* Contact Section */}
-      <section className="py-20 border-t border-vercel-border">
+      <section className="py-24 border-t border-knighty-border/50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold text-white mb-4">Get in Touch</h2>
-            <p className="text-lg text-vercel-muted max-w-3xl mx-auto">
-              Have questions or suggestions? We'd love to hear from you!
+            <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">{translate('about.contact.title')}</h2>
+            <p className="text-lg text-knighty-muted max-w-3xl mx-auto">
+              {translate('about.contact.subtitle')}
             </p>
           </div>
           
-          <div className="max-w-3xl mx-auto bg-vercel-card border border-vercel-border rounded-lg p-8">
+          <div className="max-w-2xl mx-auto bg-knighty-card border border-knighty-border rounded-2xl p-8 md:p-10 shadow-2xl">
             <form className="space-y-6">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div>
-                  <label htmlFor="name" className="block text-sm font-medium text-gray-300 mb-1">
-                    Name
+                <div className="space-y-2">
+                  <label htmlFor="name" className="text-sm font-medium text-white ml-1">
+                    {translate('about.contact.name')}
                   </label>
                   <input
                     type="text"
                     id="name"
-                    className="w-full rounded-lg border border-vercel-border bg-black px-3 py-2 text-white focus:outline-none focus:ring-2 focus:ring-white/25 focus:border-gray-500 transition-colors duration-200"
+                    className="w-full bg-knighty-bg border border-knighty-border rounded-lg px-4 py-3 text-white placeholder-knighty-muted focus:border-knighty-accent focus:ring-1 focus:ring-knighty-accent outline-none transition-all"
                     placeholder="Your name"
                   />
                 </div>
-                <div>
-                  <label htmlFor="email" className="block text-sm font-medium text-gray-300 mb-1">
-                    Email
+                <div className="space-y-2">
+                  <label htmlFor="email" className="text-sm font-medium text-white ml-1">
+                    {translate('about.contact.email')}
                   </label>
                   <input
                     type="email"
                     id="email"
-                    className="w-full rounded-lg border border-vercel-border bg-black px-3 py-2 text-white focus:outline-none focus:ring-2 focus:ring-white/25 focus:border-gray-500 transition-colors duration-200"
-                    placeholder="Your email"
+                    className="w-full bg-knighty-bg border border-knighty-border rounded-lg px-4 py-3 text-white placeholder-knighty-muted focus:border-knighty-accent focus:ring-1 focus:ring-knighty-accent outline-none transition-all"
+                    placeholder="name@example.com"
                   />
                 </div>
               </div>
-              <div>
-                <label htmlFor="subject" className="block text-sm font-medium text-gray-300 mb-1">
-                  Subject
+              <div className="space-y-2">
+                <label htmlFor="subject" className="text-sm font-medium text-white ml-1">
+                  {translate('about.contact.subject')}
                 </label>
                 <input
                   type="text"
                   id="subject"
-                  className="w-full rounded-lg border border-vercel-border bg-black px-3 py-2 text-white focus:outline-none focus:ring-2 focus:ring-white/25 focus:border-gray-500 transition-colors duration-200"
-                  placeholder="Subject"
+                  className="w-full bg-knighty-bg border border-knighty-border rounded-lg px-4 py-3 text-white placeholder-knighty-muted focus:border-knighty-accent focus:ring-1 focus:ring-knighty-accent outline-none transition-all"
+                  placeholder="How can we help?"
                 />
               </div>
-              <div>
-                <label htmlFor="message" className="block text-sm font-medium text-gray-300 mb-1">
-                  Message
+              <div className="space-y-2">
+                <label htmlFor="message" className="text-sm font-medium text-white ml-1">
+                  {translate('about.contact.message')}
                 </label>
                 <textarea
                   id="message"
                   rows={5}
-                  className="w-full rounded-lg border border-vercel-border bg-black px-3 py-2 text-white focus:outline-none focus:ring-2 focus:ring-white/25 focus:border-gray-500 transition-colors duration-200"
-                  placeholder="Your message"
+                  className="w-full bg-knighty-bg border border-knighty-border rounded-lg px-4 py-3 text-white placeholder-knighty-muted focus:border-knighty-accent focus:ring-1 focus:ring-knighty-accent outline-none transition-all resize-none"
+                  placeholder="Your message..."
                 />
               </div>
-              <div className="text-center">
+              <div className="pt-4">
                 <Button 
                   variant="primary" 
                   size="lg" 
-                  leftIcon={<Mail className="h-5 w-5" />}
+                  fullWidth
+                  className="bg-white text-black hover:bg-gray-200 font-bold py-4"
+                  leftIcon={<Mail className="h-5 w-5 fill-black" />}
                 >
-                  Send Message
+                  {translate('about.contact.send')}
                 </Button>
               </div>
             </form>
