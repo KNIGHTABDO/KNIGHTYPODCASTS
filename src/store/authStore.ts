@@ -153,7 +153,7 @@ export const useAuthStore = create<AuthState>((set, get) => ({
         });
       }
     } catch (error) {
-      console.warn('Could not check user session:', error);
+      console.warn('Could not check user session. Please verify Supabase configuration:', error);
     }
     
     set({ isLoading: false });
