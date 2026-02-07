@@ -132,14 +132,14 @@ export const Navbar: React.FC = () => {
               className="block text-gray-400 hover:text-white px-3 py-2 text-sm transition-colors duration-200"
               onClick={toggleMenu}
             >
-              Home
+              {translate('nav.home')}
             </Link>
             <Link
               to="/podcasts"
               className="block text-gray-400 hover:text-white px-3 py-2 text-sm transition-colors duration-200"
               onClick={toggleMenu}
             >
-              Videos
+              {translate('nav.videos')}
             </Link>
             {user ? (
               <>
@@ -148,27 +148,27 @@ export const Navbar: React.FC = () => {
                   className="block text-gray-400 hover:text-white px-3 py-2 text-sm transition-colors duration-200"
                   onClick={toggleMenu}
                 >
-                  Dashboard
+                  {translate('nav.dashboard')}
                 </Link>
                 <Link
                   to={`/profile/${user.username}`}
                   className="block text-gray-400 hover:text-white px-3 py-2 text-sm transition-colors duration-200"
                   onClick={toggleMenu}
                 >
-                  Profile
+                  {translate('nav.profile')}
                 </Link>
                 <Link
                   to="/settings"
                   className="block text-gray-400 hover:text-white px-3 py-2 text-sm transition-colors duration-200"
                   onClick={toggleMenu}
                 >
-                  Settings
+                  {translate('nav.settings')}
                 </Link>
                 <button
                   onClick={handleSignOut}
                   className="block w-full text-left text-gray-400 hover:text-white px-3 py-2 text-sm transition-colors duration-200"
                 >
-                  Sign Out
+                  {translate('nav.signOut')}
                 </button>
               </>
             ) : (
@@ -180,13 +180,18 @@ export const Navbar: React.FC = () => {
                 variant="primary"
                 fullWidth
               >
-                Sign In
+                {translate('nav.signIn')}
               </Button>
             )}
             
             {/* Add SearchUsers to mobile menu */}
             <div className="px-3 py-2">
               <SearchUsers />
+            </div>
+            
+            {/* Add LanguageSwitcher to mobile menu */}
+            <div className="px-3 py-2">
+              <LanguageSwitcher />
             </div>
             
           </div>
