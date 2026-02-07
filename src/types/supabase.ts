@@ -20,7 +20,6 @@ export interface Database {
           category: string
           duration: number
           user_id: string
-          username: string
         }
         Insert: {
           id?: string
@@ -32,7 +31,6 @@ export interface Database {
           category: string
           duration: number
           user_id: string
-          username: string
         }
         Update: {
           id?: string
@@ -44,7 +42,6 @@ export interface Database {
           category?: string
           duration?: number
           user_id?: string
-          username?: string
         }
       }
       profiles: {

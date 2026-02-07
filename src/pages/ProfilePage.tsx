@@ -22,7 +22,7 @@ export const ProfilePage: React.FC = () => {
   const { username } = useParams<{ username: string }>();
   const navigate = useNavigate();
   const { user, updateProfile, fetchProfile } = useAuthStore();
-  const { podcasts, fetchPodcastsByUsername } = usePodcastStore();
+  const { podcasts, fetchPodcastsByUserId } = usePodcastStore();
   const [profile, setProfile] = useState<Profile | null>(null);
   const [isEditing, setIsEditing] = useState(false);
   const [form, setForm] = useState({
@@ -48,14 +48,17 @@ export const ProfilePage: React.FC = () => {
         instagram_url: data?.instagram_url || '',
       });
     }
-  }, [fetchProfile, username, user?.username]);
+    // Fetch podcasts by user_id using the profile's id
+    if (data && 'id' in data) {
+      fetchPodcastsByUserId((data as { id: string }).id);
+    }
+  }, [fetchProfile, fetchPodcastsByUserId, username, user?.username]);
 
   useEffect(() => {
     if (username) {
       loadProfile();
-      fetchPodcastsByUsername(username);
     }
-  }, [fetchPodcastsByUsername, loadProfile, username]);
+  }, [loadProfile, username]);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();

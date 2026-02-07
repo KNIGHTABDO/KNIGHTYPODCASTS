@@ -54,7 +54,7 @@ export const useAuthStore = create<AuthState>((set, get) => ({
         user: { 
           id: data.user.id, 
           email: data.user.email || '',
-          username: data.user.user_metadata.username
+          username: profile?.username || data.user.user_metadata.username
         },
         profile,
         isAdmin: true,
@@ -143,11 +143,18 @@ export const useAuthStore = create<AuthState>((set, get) => ({
       const { data } = await supabase.auth.getUser();
       
       if (data?.user) {
+        // Fetch username from profiles table instead of auth metadata
+        const { data: profile } = await supabase
+          .from('profiles')
+          .select('username')
+          .eq('id', data.user.id)
+          .single();
+
         set({ 
           user: { 
             id: data.user.id, 
             email: data.user.email || '',
-            username: data.user.user_metadata.username
+            username: profile?.username || data.user.user_metadata.username
           },
           isAdmin: true, // For simplicity, all authenticated users are admins
         });
